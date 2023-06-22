@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
-import 'package:docscore/resources/constants/colors.dart';
+import 'package:docscore/Student/add_docs.dart';
+import 'package:docscore/resources/colors.dart';
+import 'package:docscore/resources/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -73,7 +75,12 @@ class _Student_home_pageState extends State<Student_home_page> {
               ),
             ),
             backgroundColor: ButtonColor(),
-            onPressed: () {},
+            onPressed: () {
+              nextScreen(
+                context,
+                const adddocs(),
+              );
+            },
             child: const Icon(
               Icons.add,
               size: 40,
