@@ -1,3 +1,6 @@
+// ignore_for_file: camel_case_types
+
+import 'package:docscore/resources/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,16 +20,8 @@ class _Student_home_pageState extends State<Student_home_page> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topRight,
-                end: Alignment.bottomLeft,
-                colors: [
-                  Color(0xFF1F2C45),
-                  Color(0xFF274B93),
-                  Color(0XFF2A519D),
-                ],
-              ),
+            decoration: BoxDecoration(
+              gradient: backgroundGradient(),
             ),
             child: Padding(
               padding: const EdgeInsets.only(
@@ -43,7 +38,11 @@ class _Student_home_pageState extends State<Student_home_page> {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: const Icon(Icons.menu),
+                        icon: Icon(
+                          Icons.menu,
+                          color: ButtonColor(),
+                          size: 30,
+                        ),
                       ),
                       const Spacer(),
                       Image.asset('assets/SRM.jpeg'),
@@ -62,6 +61,22 @@ class _Student_home_pageState extends State<Student_home_page> {
                   ),
                 ],
               ),
+            ),
+          ),
+        ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 10.0),
+          child: FloatingActionButton(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(50.0),
+              ),
+            ),
+            backgroundColor: ButtonColor(),
+            onPressed: () {},
+            child: const Icon(
+              Icons.add,
+              size: 40,
             ),
           ),
         ),
