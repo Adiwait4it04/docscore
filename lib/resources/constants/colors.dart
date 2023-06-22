@@ -1,7 +1,10 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+const primaryColor = Colors.white;
+const secondaryColor = Colors.deepPurple;
+
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names
 
 Gradient backgroundGradient() {
   return LinearGradient(

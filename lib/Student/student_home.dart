@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:docscore/Student/add_docs.dart';
-import 'package:docscore/resources/colors.dart';
+import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
