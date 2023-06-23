@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, sort_child_properties_last
+// ignore_for_file: unused_field, sort_child_properties_last, unused_import
 
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -7,16 +7,16 @@ import 'package:docscore/widgets/text_input.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
 import 'package:docscore/Faculty/utils/utils.dart';
 
-class FacultyLoginScreen extends StatefulWidget {
-  const FacultyLoginScreen({super.key});
+class FacultySignupPage extends StatefulWidget {
+  const FacultySignupPage({super.key});
 
   @override
-  State<FacultyLoginScreen> createState() => _FacultyLoginScreenState();
+  State<FacultySignupPage> createState() => _FacultySignupPageState();
 }
 
-class _FacultyLoginScreenState extends State<FacultyLoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+class _FacultySignupPageState extends State<FacultySignupPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool _isLoading = false;
 
   @override
@@ -26,23 +26,22 @@ class _FacultyLoginScreenState extends State<FacultyLoginScreen> {
     _passwordController.dispose();
   }
 
-  void _loginFaculty() async {
+  void _signupFaculty() async {
     setState(() {
       _isLoading = true;
     });
 
-    String res = await AuthMethods().loginFaculty(
-      email: _emailController.text.toString().trim(),
-      password: _passwordController.text.toString().trim(),
-    );
+    String res = await AuthMethods().signupFaculty(
+        email: _emailController.text, password: _passwordController.text);
 
     setState(() {
       _isLoading = false;
     });
+
     if (res == "Success") {
-      showSnackBar("Login success", context);
-    } else if (res == "empty-fields") {
-      showSnackBar("Please enter all the fields", context);
+      showSnackBar("Signup Success", context);
+    } else {
+      showSnackBar("Signup Failed", context);
     }
   }
 
@@ -112,13 +111,13 @@ class _FacultyLoginScreenState extends State<FacultyLoginScreen> {
 
                   // Login button
                   InkWell(
-                    onTap: _loginFaculty,
+                    onTap: _signupFaculty,
                     child: Container(
                       child: _isLoading
                           ? const Center(
                               child: CircularProgressIndicator.adaptive(),
                             )
-                          : const Text("Login"),
+                          : const Text("Signup"),
                       width: MediaQuery.of(context).size.width * 0.5,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 10),
