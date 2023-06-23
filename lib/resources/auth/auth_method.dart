@@ -31,10 +31,29 @@ class AuthMethods {
     return res;
   }
 
+  //login for faculty
+
   Future<String> loginFaculty({
     required String email,
     required String password,
   }) async {
+    String res = "Some error occured";
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        await _auth.signInWithEmailAndPassword(
+            email: email, password: password);
+        res = "Success";
+      } else {
+        res = "empty-fields";
+      }
+    } on FirebaseAuthException catch (e) {
+      res = e.code.toString();
+    }
+    return res;
+  }
+
+  // login for student
+  Future<String> loginStudent({required email, required password}) async {
     String res = "Some error occured";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
