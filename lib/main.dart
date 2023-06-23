@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/Faculty/faculty_login.dart';
+import 'package:docscore/Faculty/faculty_signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
