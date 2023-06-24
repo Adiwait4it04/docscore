@@ -1,3 +1,4 @@
+import 'package:docscore/resources/constants/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
@@ -29,16 +30,8 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
         child: Scaffold(
           body: SafeArea(
             child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Color(0xFF1F2C45),
-                    Color(0xFF274B93),
-                    Color(0XFF2A519D),
-                  ],
-                ),
+              decoration: BoxDecoration(
+                gradient: backgroundGradient(),
               ),
               child: Center(
                 child: Column(
