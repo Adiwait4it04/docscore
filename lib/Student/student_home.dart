@@ -47,7 +47,14 @@ class _Student_home_pageState extends State<Student_home_page> {
                         ),
                       ),
                       const Spacer(),
-                      Image.asset('assets/SRM.jpeg'),
+                      SizedBox(
+                        height: 70,
+                        width: 120,
+                        child: Image.asset(
+                          'assets/SRM_1.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
