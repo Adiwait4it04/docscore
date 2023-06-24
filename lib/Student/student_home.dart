@@ -14,6 +14,7 @@ class Student_home_page extends StatefulWidget {
 }
 
 class _Student_home_pageState extends State<Student_home_page> {
+  List<String> items = [];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,7 +49,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                       ),
                       const Spacer(),
                       SizedBox(
-                        height: 70,
+                        height: 50,
                         width: 120,
                         child: Image.asset(
                           'assets/SRM_1.jpg',
@@ -68,6 +69,16 @@ class _Student_home_pageState extends State<Student_home_page> {
                       ),
                     ),
                   ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, int index) {
+                        return SingleChildScrollView(
+                          child: StudentHomeWidget(),
+                        );
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -83,11 +94,13 @@ class _Student_home_pageState extends State<Student_home_page> {
             ),
             backgroundColor: ButtonColor(),
             onPressed: () {
-              nextScreen(
-                context,
-                const adddocs(),
+              setState(
+                () {
+                  items.add('New List Item');
+                },
               );
             },
+            tooltip: 'Add Item',
             child: const Icon(
               Icons.add,
               size: 40,
