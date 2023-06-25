@@ -2,17 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
 
-class StudentLoginPage extends StatefulWidget {
+class StudentLoginPage extends StatelessWidget {
   StudentLoginPage({super.key});
 
-  @override
-  State<StudentLoginPage> createState() => _StudentLoginPageState();
-}
-
-class _StudentLoginPageState extends State<StudentLoginPage> {
   //text editing controller
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
 
   //sign user in method
