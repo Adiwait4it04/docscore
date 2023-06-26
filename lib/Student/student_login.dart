@@ -12,11 +12,10 @@ class StudentLoginPage extends StatelessWidget {
   final passwordController = TextEditingController();
 
   //sign user in method
-  signUserIn(BuildContext context) async {
+  void signUserIn() async {
     String res = await AuthMethods().loginStudent(
         email: emailController.text, password: passwordController.text);
     if (res == "Success") {
-      replaceScreen(context, Student_home_page());
       print("Done");
     }
   }
@@ -128,7 +127,7 @@ class StudentLoginPage extends StatelessWidget {
                       ),
                       //log in button
                       GestureDetector(
-                        onTap: signUserIn(context),
+                        onTap: signUserIn,
                         child: Container(
                           padding: const EdgeInsets.all(25.0),
                           margin: const EdgeInsets.symmetric(horizontal: 25.0),

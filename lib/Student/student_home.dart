@@ -47,7 +47,14 @@ class _Student_home_pageState extends State<Student_home_page> {
                         ),
                       ),
                       const Spacer(),
-                      Image.asset('assets/SRM.jpeg'),
+                      SizedBox(
+                        height: 50,
+                        width: 120,
+                        child: Image.asset(
+                          'assets/SRM_1.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ],
                   ),
                   Padding(
@@ -59,6 +66,16 @@ class _Student_home_pageState extends State<Student_home_page> {
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
+                    ),
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: lengthogitems(),
+                      itemBuilder: (context, int index) {
+                        return SingleChildScrollView(
+                          child: StudentHomeWidget(index),
+                        );
+                      },
                     ),
                   ),
                 ],
@@ -81,6 +98,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                 const adddocs(),
               );
             },
+            tooltip: 'Add Item',
             child: const Icon(
               Icons.add,
               size: 40,

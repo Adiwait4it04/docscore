@@ -13,11 +13,11 @@ Gradient backgroundGradient() {
     colors: const [
       Color(0xFF1F2C45),
       Color(0xFF274B93),
-      Color(0XFF2A519D),
+      Color(0xFF2A519D),
     ],
   );
 }
 
 Color ButtonColor() {
-  return Color(0XffD9D9D9);
+  return Color(0xffD9D9D9);
 }
