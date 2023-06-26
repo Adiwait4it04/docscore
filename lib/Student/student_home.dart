@@ -60,7 +60,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0, left: 15),
                     child: Text(
-                      "Hi,Krish!",
+                      "Hi,Student!",
                       style: GoogleFonts.montserrat(
                         fontSize: 35,
                         fontWeight: FontWeight.w500,
