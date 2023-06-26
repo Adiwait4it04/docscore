@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthMethods {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Signup Faculty not completed do not use
   Future<String> signupFaculty({
@@ -17,7 +17,7 @@ class AuthMethods {
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
         UserCredential userCredential =
-            await _auth.createUserWithEmailAndPassword(
+            await auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
@@ -40,8 +40,7 @@ class AuthMethods {
     String res = "Some error occured";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
-        await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
+        await auth.signInWithEmailAndPassword(email: email, password: password);
         res = "Success";
       } else {
         res = "empty-fields";
@@ -57,8 +56,7 @@ class AuthMethods {
     String res = "Some error occured";
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
-        await _auth.signInWithEmailAndPassword(
-            email: email, password: password);
+        await auth.signInWithEmailAndPassword(email: email, password: password);
         res = "Success";
       } else {
         res = "empty-fields";

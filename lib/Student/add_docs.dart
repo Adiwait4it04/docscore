@@ -1,10 +1,12 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, avoid_unnecessary_containers
 
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+List buttonStates = [true, true, true];
 
 class adddocs extends StatefulWidget {
   const adddocs({super.key});
@@ -73,147 +75,194 @@ class _adddocsState extends State<adddocs> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 25),
-                    child: Container(
-                      height: 60,
-                      width: 320,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              additems(
-                                name[0],
-                              );
-                            },
-                          );
-                          replaceScreen(
-                            context,
-                            const Student_home_page(),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "10th Marksheet",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black,
-                                ),
-                              ),
-                              const Icon(
-                                Icons.document_scanner_sharp,
-                                size: 30,
-                                color: Colors.black,
-                              ),
-                            ],
+                  if (buttonStates[0] == false &&
+                      buttonStates[1] == false &&
+                      buttonStates[2] == false)
+                    Center(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 40.0, left: 15),
+                        child: Text(
+                          "All Documents Added",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 25),
-                    child: Container(
-                      height: 60,
-                      width: 320,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              additems(
-                                name[1],
-                              );
-                            },
-                          );
-                          replaceScreen(
-                            context,
-                            const Student_home_page(),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "12th Marksheet",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black,
+                    )
+                  else
+                    buttonStates[0]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 40.0, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[0]
+                                    ? () {
+                                        setState(
+                                          () {
+                                            additems(
+                                              name[0],
+                                            );
+                                            buttonStates[0] = false;
+                                          },
+                                        );
+                                        replaceScreen(
+                                          context,
+                                          const Student_home_page(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        "10th Marksheet",
+                                        style: GoogleFonts.montserrat(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              const Icon(
-                                Icons.document_scanner_sharp,
-                                size: 30,
-                                color: Colors.black,
-                              ),
-                            ],
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
                           ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 25),
-                    child: Container(
-                      height: 60,
-                      width: 320,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Colors.white,
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(
-                            () {
-                              additems(
-                                name[2],
-                              );
-                            },
-                          );
-                          replaceScreen(
-                            context,
-                            const Student_home_page(),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                "CGPA details",
-                                style: GoogleFonts.montserrat(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.black,
+                  buttonStates[1]
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 20, left: 25),
+                          child: Container(
+                            height: 60,
+                            width: 320,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: GestureDetector(
+                              onTap: buttonStates[1]
+                                  ? () {
+                                      setState(
+                                        () {
+                                          additems(
+                                            name[1],
+                                          );
+                                          buttonStates[1] = false;
+                                        },
+                                      );
+                                      replaceScreen(
+                                        context,
+                                        const Student_home_page(),
+                                      );
+                                    }
+                                  : null,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      "12th Marksheet",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.document_scanner_sharp,
+                                      size: 30,
+                                      color: Colors.black,
+                                    ),
+                                  ],
                                 ),
                               ),
-                              const Icon(
-                                Icons.document_scanner_sharp,
-                                size: 30,
-                                color: Colors.black,
-                              ),
-                            ],
+                            ),
                           ),
+                        )
+                      : const SizedBox(
+                          height: 0,
+                          width: 0,
                         ),
-                      ),
-                    ),
-                  ),
+                  buttonStates[2]
+                      ? Padding(
+                          padding: const EdgeInsets.only(top: 20, left: 25),
+                          child: Container(
+                            height: 60,
+                            width: 320,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.white,
+                            ),
+                            child: GestureDetector(
+                              onTap: buttonStates[2]
+                                  ? () {
+                                      setState(
+                                        () {
+                                          additems(
+                                            name[2],
+                                          );
+                                          buttonStates[2] = false;
+                                        },
+                                      );
+                                      replaceScreen(
+                                        context,
+                                        const Student_home_page(),
+                                      );
+                                    }
+                                  : null,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text(
+                                      "CGPA details",
+                                      style: GoogleFonts.montserrat(
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const Icon(
+                                      Icons.document_scanner_sharp,
+                                      size: 30,
+                                      color: Colors.black,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(
+                          height: 0,
+                          width: 0,
+                        ),
                 ],
               ),
             ),
