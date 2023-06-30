@@ -11,6 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/Faculty/faculty_login.dart';
 import 'package:docscore/Faculty/faculty_signup.dart';
+import 'package:docscore/Student/student_signup.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,15 +31,16 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: StreamBuilder(
-        stream: AuthMethods().auth.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const Student_home_page();
-          }
-          return StudentLoginPage();
-        },
-      ),
+      home: StudentSignup(),
+      // home: StreamBuilder(
+      //   stream: AuthMethods().auth.authStateChanges(),
+      //   builder: (context, snapshot) {
+      //     if (snapshot.hasData) {
+      //       return const Student_home_page();
+      //     }
+      //     return StudentSignup();
+      //   },
+      // ),
     );
   }
 }
