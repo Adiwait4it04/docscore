@@ -5,7 +5,6 @@ import 'dart:ui';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
-import 'package:docscore/ss.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
