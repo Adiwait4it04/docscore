@@ -48,17 +48,30 @@ class Section {
     return documentNames;
   }
 
-  static Future getStudentDocumentList() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  static Future getStudentDocumentList(String regno) async {
+    DocumentSnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("users")
         .doc("RA2111051010027")
-        .collection("Documents")
         .get();
+    if (querySnapshot.exists) {
+      return querySnapshot["Documents"];
+    } else {
+      return null;
+    }
+  }
 
-    List<DocumentSnapshot> documentNames = [];
-    querySnapshot.docs.forEach((doc) {
-      documentNames.add(doc);
-    });
-    return documentNames;
+  static Future addStudentList(String regno, String studentName) async {
+    await FirebaseFirestore.instance.collection("users").doc(regno).set(
+      {
+        "role": "student",
+        "Name": studentName,
+        "Documents": {
+          "10th_Marksheet": "10th Marksheet.pdf",
+          "12th_Marksheet": "12th Marksheet.pdf",
+          "JEE_Admit_Card": "JEE Admit Card.pdf",
+          "JEE_Rank_Card": "JEE Rank Card.pdf",
+        }
+      },
+    );
   }
 }

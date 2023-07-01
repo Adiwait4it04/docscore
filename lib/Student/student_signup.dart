@@ -273,8 +273,11 @@ class _StudentSignupState extends State<StudentSignup> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(vertical: 10),
                       decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
+                        ),
+                      ),
                     ),
                   ),
                 ],
