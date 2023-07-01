@@ -48,10 +48,10 @@ class Section {
     return documentNames;
   }
 
-  static Future getStudentDocumentList(String regno) async {
+  static Future getStudentDocumentList(String regNo) async {
     DocumentSnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("users")
-        .doc("RA2111051010027")
+        .doc(regNo)
         .get();
     if (querySnapshot.exists) {
       return querySnapshot["Documents"];
@@ -71,6 +71,15 @@ class Section {
           "JEE_Admit_Card": "JEE Admit Card.pdf",
           "JEE_Rank_Card": "JEE Rank Card.pdf",
         }
+      },
+    );
+  }
+  static Future addFacultyList(String uid, String facultyName, List sections) async {
+    await FirebaseFirestore.instance.collection("users").doc(uid).set(
+      {
+        "role": "faculty",
+        "Name": facultyName,
+        "Sections": sections,
       },
     );
   }

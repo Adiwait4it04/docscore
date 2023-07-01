@@ -12,7 +12,7 @@ class TestingKeLiye extends StatelessWidget {
       ),
       body: ElevatedButton(
         onPressed: () async {
-          var some = await Section.getStudentDocumentList("RA2111051010009");
+          var some = await Section.addFacultyList("001","Chinnasamy",["AB2","AB1"]);
           print(some);
         },
         child: Text("DABAO"),
