@@ -11,7 +11,7 @@ class Section {
     return documentNames;
   }
 
-  static Future getAllSectionFacultyAdvisors(String SectionName) async {
+  static Future getSectionFacultyAdvisors(String SectionName) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("sections")
         .doc(SectionName)
@@ -24,7 +24,7 @@ class Section {
     return documentNames;
   }
 
-  static Future getStudents() async {
+  static Future getStudentsfromUsers() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection("users")
         .where("role", isEqualTo: "student")
@@ -32,6 +32,32 @@ class Section {
     List<String> documentNames = [];
     querySnapshot.docs.forEach((doc) {
       documentNames.add(doc.id);
+    });
+    return documentNames;
+  }
+
+  static Future getFacultyfromUsers() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .where("role", isEqualTo: "faculty")
+        .get();
+    List<String> documentNames = [];
+    querySnapshot.docs.forEach((doc) {
+      documentNames.add(doc.id);
+    });
+    return documentNames;
+  }
+
+  static Future getStudentDocumentList() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .doc("RA2111051010027")
+        .collection("Documents")
+        .get();
+
+    List<DocumentSnapshot> documentNames = [];
+    querySnapshot.docs.forEach((doc) {
+      documentNames.add(doc);
     });
     return documentNames;
   }
