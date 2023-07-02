@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:docscore/models/student.dart' as studentModel;
 
 class Section {
   static Future<List<String>> getSections() async {
@@ -56,31 +57,5 @@ class Section {
     } else {
       return null;
     }
-  }
-
-  static Future addStudentList(String regno, String studentName) async {
-    await FirebaseFirestore.instance.collection("users").doc(regno).set(
-      {
-        "role": "student",
-        "Name": studentName,
-        "Documents": {
-          "10th_Marksheet": "10th Marksheet.pdf",
-          "12th_Marksheet": "12th Marksheet.pdf",
-          "JEE_Admit_Card": "JEE Admit Card.pdf",
-          "JEE_Rank_Card": "JEE Rank Card.pdf",
-        }
-      },
-    );
-  }
-
-  static Future addFacultyList(
-      String uid, String facultyName, List sections) async {
-    await FirebaseFirestore.instance.collection("users").doc(uid).set(
-      {
-        "role": "faculty",
-        "Name": facultyName,
-        "Sections": sections,
-      },
-    );
   }
 }
