@@ -7,17 +7,26 @@ class User {
 
   // add student in user collection with nill documents uploaded
   static Future addStudent(String regno, String studentName) async {
-    student_model.Student student =
-        student_model.Student(name: studentName, documents: {
-      "10th_Marksheet": "",
-      "12th_Marksheet": "",
-      "JEE_Admit_Card": "",
-      "JEE_Rank_Card": "",
-    });
+    String res = "Error";
+    try {
+      student_model.Student student =
+          student_model.Student(name: studentName, documents: {
+        "10th_Marksheet": "",
+        "12th_Marksheet": "",
+        "JEE_Admit_Card": "",
+        "JEE_Rank_Card": "",
+      });
 
-    await FirebaseFirestore.instance.collection("users").doc(regno).set(
-          student.toJson(),
-        );
+      await FirebaseFirestore.instance.collection("users").doc(regno).set(
+            student.toJson(),
+          );
+
+      res = "success";
+    } catch (err) {
+      res = err.toString();
+    }
+
+    return res;
   }
 
   // add Faculty in user collection
@@ -34,4 +43,9 @@ class User {
   }
 
   // FUNCTIONS TO GET FROM DATABASE
+  static Future<bool> alreadyExists(String id) async {
+    DocumentSnapshot documentSnapshot =
+        await FirebaseFirestore.instance.collection("users").doc(id).get();
+    return documentSnapshot.exists;
+  }
 }

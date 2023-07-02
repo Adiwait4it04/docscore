@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last, unused_import, unused_field
 
+import 'package:docscore/Faculty/utils/utils.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 import '../resources/constants/colors.dart';
 import 'package:docscore/widgets/text_input.dart';
 import 'package:docscore/widgets/test_form_field.dart';
+import 'package:docscore/models/users.dart' as users_model;
 
 class StudentSignup extends StatefulWidget {
   const StudentSignup({super.key});
@@ -53,15 +55,31 @@ class _StudentSignupState extends State<StudentSignup> {
     super.dispose();
   }
 
-  void _signupStudent() {
+  void _signupStudent() async {
     setState(() {
       _isLoading = true;
     });
 
     if (_formKey.currentState!.validate()) {
-      // add student data to firebase
+      // Add validation that the student already does not exist in database
+      if (await users_model.User.alreadyExists(_regnoController.text)) {
+        showSnackBar("Student already exists", context);
 
-      print("validated");
+        setState(() {
+          _isLoading = false;
+        });
+        return;
+      } else {
+        // add student data to firebase
+        users_model.User.addStudent(
+          _regnoController.text,
+          _nameController.text,
+        );
+        showSnackBar("Signup completed", context);
+        setState(() {
+          _isLoading = false;
+        });
+      }
     } else {
       print("Did not validate");
     }
@@ -79,20 +97,21 @@ class _StudentSignupState extends State<StudentSignup> {
         OutlineInputBorder(borderSide: Divider.createBorderSide(context));
 
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              gradient: backgroundGradient(),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            gradient: backgroundGradient(),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 20,
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 20,
-              ),
-              child: Form(
-                key: _formKey,
+            child: Form(
+              key: _formKey,
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     // Logo
@@ -107,10 +126,16 @@ class _StudentSignupState extends State<StudentSignup> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
-                      child: TextInput(
+                      child: TextForm(
                         textEditingController: _nameController,
                         hintText: 'Name',
                         textInputType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter your name";
+                          }
+                          return null;
+                        },
                       ),
                     ),
 
@@ -123,10 +148,16 @@ class _StudentSignupState extends State<StudentSignup> {
                       padding: const EdgeInsets.symmetric(
                         horizontal: 20,
                       ),
-                      child: TextInput(
+                      child: TextForm(
                         textEditingController: _regnoController,
                         hintText: 'Registration Number',
                         textInputType: TextInputType.text,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Enter your registration number";
+                          }
+                          return null;
+                        },
                       ),
                     ),
 
@@ -147,9 +178,9 @@ class _StudentSignupState extends State<StudentSignup> {
                           if (value!.isEmpty) {
                             return "Enter an email";
                           }
-                          if (!value.toLowerCase().endsWith("@srmist.edu.in")) {
-                            return "Enter a valid SRM email";
-                          }
+                          // if (!value.toLowerCase().endsWith("@srmist.edu.in")) {
+                          //   return "Enter a valid SRM email";
+                          // }
 
                           return null;
                         },
@@ -218,6 +249,12 @@ class _StudentSignupState extends State<StudentSignup> {
                         horizontal: 20,
                       ),
                       child: DropdownButtonFormField(
+                        validator: (value) {
+                          if (value == null) {
+                            return "Select your section";
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           border: dropDownBorder,
                           enabledBorder: dropDownBorder,
@@ -257,6 +294,12 @@ class _StudentSignupState extends State<StudentSignup> {
                         horizontal: 20,
                       ),
                       child: DropdownButtonFormField(
+                        validator: (value) {
+                          if (value == null) {
+                            return "Select your faculty advisor";
+                          }
+                          return null;
+                        },
                         decoration: InputDecoration(
                           border: dropDownBorder,
                           enabledBorder: dropDownBorder,
