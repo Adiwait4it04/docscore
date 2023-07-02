@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Section {
-  static Future<List<String>> getAllSectionNames() async {
+  static Future<List<String>> getSections() async {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("sections").get();
-    List<String> documentNames = [];
+    List<String> sectionNames = [];
     querySnapshot.docs.forEach((doc) {
-      documentNames.add(doc.id);
+      sectionNames.add(doc.id);
     });
-    return documentNames;
+    return sectionNames;
   }
 
   static Future getSectionFacultyAdvisors(String SectionName) async {
@@ -17,11 +17,11 @@ class Section {
         .doc(SectionName)
         .collection("Faculty advisors")
         .get();
-    List<String> documentNames = [];
+    List<String> facultyAdvisors = [];
     querySnapshot.docs.forEach((doc) {
-      documentNames.add(doc.id);
+      facultyAdvisors.add(doc.id);
     });
-    return documentNames;
+    return facultyAdvisors;
   }
 
   static Future getStudentsfromUsers() async {
@@ -49,10 +49,8 @@ class Section {
   }
 
   static Future getStudentDocumentList(String regNo) async {
-    DocumentSnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection("users")
-        .doc(regNo)
-        .get();
+    DocumentSnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection("users").doc(regNo).get();
     if (querySnapshot.exists) {
       return querySnapshot["Documents"];
     } else {
@@ -74,7 +72,9 @@ class Section {
       },
     );
   }
-  static Future addFacultyList(String uid, String facultyName, List sections) async {
+
+  static Future addFacultyList(
+      String uid, String facultyName, List sections) async {
     await FirebaseFirestore.instance.collection("users").doc(uid).set(
       {
         "role": "faculty",
