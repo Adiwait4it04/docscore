@@ -3,7 +3,7 @@ import 'package:docscore/models/student.dart' as student_model;
 import 'package:docscore/models/faculty.dart' as faculty_model;
 
 class User {
-  // FUNCTIONS TO UPDATE OR ADD INTO DATABASE
+  // FUNCTION TO UPDATE OR ADD INTO DATABASE
 
   // add student in user collection with nill documents uploaded
   static Future addNewStudent(String regno, String studentName) async {
