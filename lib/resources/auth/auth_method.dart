@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/rendering.dart';
 
 class AuthMethods {
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -60,6 +61,21 @@ class AuthMethods {
         res = "Success";
       } else {
         res = "empty-fields";
+      }
+    } on FirebaseAuthException catch (e) {
+      res = e.code.toString();
+    }
+    return res;
+  }
+
+  // signup for student
+  Future<String> signupStudent({required email, required password}) async {
+    String res = "Some error occured";
+    try {
+      if (email.isNotEmpty || password.isNotEmpty) {
+        UserCredential userCredential = await auth
+            .createUserWithEmailAndPassword(email: email, password: password);
+        res = "Success";
       }
     } on FirebaseAuthException catch (e) {
       res = e.code.toString();
