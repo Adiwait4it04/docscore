@@ -6,7 +6,7 @@ class User {
   // FUNCTIONS TO UPDATE OR ADD INTO DATABASE
 
   // add student in user collection with nill documents uploaded
-  static Future addStudent(String regno, String studentName) async {
+  static Future addNewStudent(String regno, String studentName) async {
     String res = "Error";
     try {
       student_model.Student student =
@@ -29,6 +29,8 @@ class User {
     return res;
   }
 
+  // Update document url in student user
+
   // add Faculty in user collection
   static Future addFaculty(
       String uid, String facultyName, List<String> sections) async {
@@ -42,10 +44,46 @@ class User {
         );
   }
 
+  // update faculty students
+
   // FUNCTIONS TO GET FROM DATABASE
   static Future<bool> alreadyExists(String id) async {
     DocumentSnapshot documentSnapshot =
         await FirebaseFirestore.instance.collection("users").doc(id).get();
     return documentSnapshot.exists;
+  }
+
+  static Future getFacultyfromUsers() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .where("role", isEqualTo: "faculty")
+        .get();
+    List<String> documentNames = [];
+    querySnapshot.docs.forEach((doc) {
+      documentNames.add(doc.id);
+    });
+    return documentNames;
+  }
+
+  static Future getStudentDocumentList(String regNo) async {
+    DocumentSnapshot querySnapshot =
+        await FirebaseFirestore.instance.collection("users").doc(regNo).get();
+    if (querySnapshot.exists) {
+      return querySnapshot["Documents"];
+    } else {
+      return null;
+    }
+  }
+
+  static Future getStudentsfromUsers() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .where("role", isEqualTo: "student")
+        .get();
+    List<String> documentNames = [];
+    querySnapshot.docs.forEach((doc) {
+      documentNames.add(doc.id);
+    });
+    return documentNames;
   }
 }

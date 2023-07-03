@@ -1,5 +1,7 @@
 // ignore_for_file: sort_child_properties_last, unused_import, unused_field
 
+import 'dart:ffi';
+
 import 'package:docscore/Faculty/utils/utils.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/constants.dart';
@@ -9,6 +11,8 @@ import '../resources/constants/colors.dart';
 import 'package:docscore/widgets/text_input.dart';
 import 'package:docscore/widgets/test_form_field.dart';
 import 'package:docscore/models/users.dart' as users_model;
+import 'package:docscore/models/sections.dart' as section_model;
+import 'package:docscore/resources/auth/auth_method.dart';
 
 class StudentSignup extends StatefulWidget {
   const StudentSignup({super.key});
@@ -26,17 +30,23 @@ class _StudentSignupState extends State<StudentSignup> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController =
       TextEditingController();
-  String _section = "";
-  String _faculty = "";
+  late String? _section;
+  late String? _faculty;
   bool _isLoading = false;
 
   // get registered sections
-  final List<String> _sections = ["AB2", "AB1", "AC1", "AC2"];
+  final List<String> _sections = [];
 
   // get registered faculty advisors
-  final List<String> _facultyAdv = ["Chinnasamy", "Sasikumar"];
+  List<String> _facultyAdv = [];
+  Map<String, String> _facultyAdvUid = {};
 
   @override
+  void initState() {
+    super.initState();
+    getSections();
+  }
+
   void navigateToLogin() {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -55,6 +65,27 @@ class _StudentSignupState extends State<StudentSignup> {
     super.dispose();
   }
 
+  void getSections() async {
+    _sections.clear();
+    _sections.addAll(await section_model.Section.getSections());
+    setState(() {
+      _section = null;
+      _faculty = null;
+    });
+  }
+
+  void getFaculty(String section) async {
+    _facultyAdvUid =
+        await section_model.Section.getSectionFacultyAdvisors(section);
+    setState(() {
+      _facultyAdv = [];
+      _facultyAdvUid.forEach((key, value) {
+        _facultyAdv.add(key);
+      });
+      _faculty = null;
+    });
+  }
+
   void _signupStudent() async {
     setState(() {
       _isLoading = true;
@@ -70,12 +101,26 @@ class _StudentSignupState extends State<StudentSignup> {
         });
         return;
       } else {
-        // add student data to firebase
-        users_model.User.addStudent(
-          _regnoController.text,
-          _nameController.text,
+        // Add user into auth
+        String res = await AuthMethods().signupStudent(
+          email: _emailController.text,
+          password: _passwordController.text,
         );
-        showSnackBar("Signup completed", context);
+
+        if (res == "Success") {
+          // add student data to firebase
+          users_model.User.addNewStudent(
+            _regnoController.text,
+            _nameController.text,
+          );
+
+          // add student data to sections collection
+
+          showSnackBar("Signup completed", context);
+        } else {
+          showSnackBar("Signup failed", context);
+        }
+
         setState(() {
           _isLoading = false;
         });
@@ -279,6 +324,7 @@ class _StudentSignupState extends State<StudentSignup> {
                         onChanged: (String? value) {
                           setState(() {
                             _section = value ?? "";
+                            getFaculty(value!);
                           });
                         },
                       ),
@@ -315,17 +361,17 @@ class _StudentSignupState extends State<StudentSignup> {
                           ),
                           child: Text("Select your faculty advisor"),
                         ),
-                        items: _facultyAdv.map((String item) {
-                          return DropdownMenuItem(
-                            value: item,
-                            child: Text(item),
-                          );
-                        }).toList(),
                         onChanged: (String? value) {
                           setState(() {
                             _faculty = value ?? "";
                           });
                         },
+                        items: _facultyAdv
+                            .map((item) => DropdownMenuItem(
+                                  value: _facultyAdvUid[item],
+                                  child: Text(item),
+                                ))
+                            .toList(),
                       ),
                     ),
 
