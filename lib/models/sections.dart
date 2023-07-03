@@ -27,6 +27,7 @@ class Section {
     return facultyAdvisors;
   }
 
+//Final function made
   Future<String> updateStudents(
       String sec, String facultyAdvUid, String regno) async {
     String res = "Error";
