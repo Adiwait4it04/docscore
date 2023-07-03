@@ -67,7 +67,7 @@ class _StudentSignupState extends State<StudentSignup> {
 
   void getSections() async {
     _sections.clear();
-    _sections.addAll(await section_model.Section.getSections());
+    _sections.addAll(await section_model.Section().getSections());
     setState(() {
       _section = null;
       _faculty = null;
@@ -76,7 +76,7 @@ class _StudentSignupState extends State<StudentSignup> {
 
   void getFaculty(String section) async {
     _facultyAdvUid =
-        await section_model.Section.getSectionFacultyAdvisors(section);
+        await section_model.Section().getSectionFacultyAdvisors(section);
     setState(() {
       _facultyAdv = [];
       _facultyAdvUid.forEach((key, value) {
@@ -113,8 +113,12 @@ class _StudentSignupState extends State<StudentSignup> {
             _regnoController.text,
             _nameController.text,
           );
-
           // add student data to sections collection
+          section_model.Section().updateStudents(
+            _section!,
+            _faculty!,
+            _regnoController.text,
+          );
 
           showSnackBar("Signup completed", context);
         } else {

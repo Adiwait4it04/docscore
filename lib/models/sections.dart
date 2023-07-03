@@ -4,9 +4,8 @@ import 'package:docscore/models/student.dart' as studentModel;
 class Section {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  static Future<List<String>> getSections() async {
-    QuerySnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection("sections").get();
+  Future<List<String>> getSections() async {
+    QuerySnapshot querySnapshot = await _firestore.collection("sections").get();
     List<String> sectionNames = [];
     querySnapshot.docs.forEach((doc) {
       sectionNames.add(doc.id);
@@ -14,9 +13,9 @@ class Section {
     return sectionNames;
   }
 
-  static Future<Map<String, String>> getSectionFacultyAdvisors(
+  Future<Map<String, String>> getSectionFacultyAdvisors(
       String SectionName) async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+    QuerySnapshot querySnapshot = await _firestore
         .collection("sections")
         .doc(SectionName)
         .collection("Faculty advisors")
@@ -28,11 +27,18 @@ class Section {
     return facultyAdvisors;
   }
 
-  static Future<String> updateStudents(
+  Future<String> updateStudents(
       String sec, String facultyAdvUid, String regno) async {
     String res = "Error";
 
-    // QuerySnapshot
+    _firestore
+        .collection("sections")
+        .doc(sec)
+        .collection("Faculty advisors")
+        .doc(facultyAdvUid)
+        .update({
+      "Students": FieldValue.arrayUnion([regno])
+    });
 
     return res;
   }

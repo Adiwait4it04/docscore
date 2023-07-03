@@ -15,7 +15,7 @@ class TestingKeLiye extends StatelessWidget {
       body: ElevatedButton(
         onPressed: () async {
           var some =
-              await section_model.Section.getSectionFacultyAdvisors("AB2");
+              await section_model.Section().getSectionFacultyAdvisors("AB2");
           print(some);
         },
         child: Text("DABAO"),
