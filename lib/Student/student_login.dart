@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:docscore/Student/student_signup.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,7 +25,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
     String res = await AuthMethods().loginStudent(
         email: emailController.text, password: passwordController.text);
     if (res == "Success") {
-      print("Done");
+      replaceScreen(context, const Student_home_page());
     }
   }
 
@@ -31,7 +33,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
   void navigateToSignup() {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => StudentSignup(),
+        builder: (context) => const StudentSignup(),
       ),
     );
   }
@@ -143,7 +145,18 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                   ),
                   //log in button
                   GestureDetector(
-                    onTap: signUserIn,
+                    onTap: () {
+                      if (emailController.text.isEmpty ||
+                          passwordController.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please fill all the fields"),
+                          ),
+                        );
+                      } else {
+                        signUserIn();
+                      }
+                    },
                     child: Container(
                       padding: const EdgeInsets.all(25.0),
                       margin: const EdgeInsets.symmetric(horizontal: 25.0),
