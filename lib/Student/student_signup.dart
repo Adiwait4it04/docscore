@@ -1,7 +1,4 @@
 // ignore_for_file: sort_child_properties_last, unused_import, unused_field
-
-import 'dart:ffi';
-
 import 'package:docscore/Faculty/utils/utils.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/constants.dart';
@@ -93,7 +90,7 @@ class _StudentSignupState extends State<StudentSignup> {
 
     if (_formKey.currentState!.validate()) {
       // Add validation that the student already does not exist in database
-      if (await users_model.User.alreadyExists(_regnoController.text)) {
+      if (await users_model.User().alreadyExists(_regnoController.text)) {
         showSnackBar("Student already exists", context);
 
         setState(() {
@@ -102,14 +99,15 @@ class _StudentSignupState extends State<StudentSignup> {
         return;
       } else {
         // Add user into auth
-        String res = await AuthMethods().signupStudent(
+        List<String?> res = await AuthMethods().signupStudent(
           email: _emailController.text,
           password: _passwordController.text,
         );
 
-        if (res == "Success") {
+        if (res[0] == "Success") {
           // add student data to firebase
-          users_model.User.addNewStudent(
+          users_model.User().addNewStudent(
+            res[1]!,
             _regnoController.text,
             _nameController.text,
           );

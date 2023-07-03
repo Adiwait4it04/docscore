@@ -3,21 +3,23 @@ import 'package:docscore/models/student.dart' as student_model;
 import 'package:docscore/models/faculty.dart' as faculty_model;
 
 class User {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   // FUNCTION TO UPDATE OR ADD INTO DATABASE
 
   // add student in user collection with nill documents uploaded
-  static Future addNewStudent(String regno, String studentName) async {
+  Future addNewStudent(String uid, String regno, String studentName) async {
     String res = "Error";
     try {
       student_model.Student student =
-          student_model.Student(name: studentName, documents: {
+          student_model.Student(uid: uid, name: studentName, documents: {
         "10th_Marksheet": "",
         "12th_Marksheet": "",
         "JEE_Admit_Card": "",
         "JEE_Rank_Card": "",
       });
 
-      await FirebaseFirestore.instance.collection("users").doc(regno).set(
+      await _firestore.collection("users").doc(regno).set(
             student.toJson(),
           );
 
@@ -32,14 +34,14 @@ class User {
   // Update document url in student user
 
   // add Faculty in user collection
-  static Future addFaculty(
+  Future addFaculty(
       String uid, String facultyName, List<String> sections) async {
     faculty_model.Faculty faculty = faculty_model.Faculty(
       name: facultyName,
       sections: sections,
     );
 
-    await FirebaseFirestore.instance.collection("users").doc(uid).set(
+    await _firestore.collection("users").doc(uid).set(
           faculty.toJson(),
         );
   }
@@ -47,9 +49,9 @@ class User {
   // update faculty students
 
   // FUNCTIONS TO GET FROM DATABASE
-  static Future<bool> alreadyExists(String id) async {
+  Future<bool> alreadyExists(String id) async {
     DocumentSnapshot documentSnapshot =
-        await FirebaseFirestore.instance.collection("users").doc(id).get();
+        await _firestore.collection("users").doc(id).get();
     return documentSnapshot.exists;
   }
 
@@ -65,9 +67,9 @@ class User {
     return documentNames;
   }
 
-  static Future getStudentDocumentList(String regNo) async {
+  Future getStudentDocumentList(String regNo) async {
     DocumentSnapshot querySnapshot =
-        await FirebaseFirestore.instance.collection("users").doc(regNo).get();
+        await _firestore.collection("users").doc(regNo).get();
     if (querySnapshot.exists) {
       return querySnapshot["Documents"];
     } else {
@@ -75,15 +77,26 @@ class User {
     }
   }
 
-  static Future getStudentsfromUsers() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  Future getStudentsfromUsers() async {
+    QuerySnapshot querySnapshot = await _firestore
         .collection("users")
         .where("role", isEqualTo: "student")
         .get();
-    List<String> documentNames = [];
+    List<String> Regno = [];
     querySnapshot.docs.forEach((doc) {
-      documentNames.add(doc.id);
+      Regno.add(doc.id);
     });
-    return documentNames;
+    return Regno;
+  }
+
+  Future getStudentFromUid(String uid) async {
+    QuerySnapshot querySnapshot =
+        await _firestore.collection("users").where("uid", isEqualTo: uid).get();
+    String regno = "";
+    querySnapshot.docs.forEach((element) {
+      regno = element.id;
+    });
+    print(regno);
+    return regno;
   }
 }

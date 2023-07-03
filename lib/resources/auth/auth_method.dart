@@ -69,16 +69,17 @@ class AuthMethods {
   }
 
   // signup for student
-  Future<String> signupStudent({required email, required password}) async {
-    String res = "Some error occured";
+  Future<List<String?>> signupStudent(
+      {required email, required password}) async {
+    List<String?> res = ["Some error occured", null];
     try {
       if (email.isNotEmpty || password.isNotEmpty) {
         UserCredential userCredential = await auth
             .createUserWithEmailAndPassword(email: email, password: password);
-        res = "Success";
+        res = ["Success", userCredential.user!.uid];
       }
     } on FirebaseAuthException catch (e) {
-      res = e.code.toString();
+      res = [e.code.toString(), null];
     }
     return res;
   }

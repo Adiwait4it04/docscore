@@ -1,6 +1,6 @@
 import 'package:docscore/models/sections.dart';
 import 'package:flutter/material.dart';
-import 'package:docscore/models/users.dart';
+import 'package:docscore/models/users.dart' as user_model;
 import 'package:docscore/models/sections.dart' as section_model;
 
 class TestingKeLiye extends StatelessWidget {
@@ -14,8 +14,8 @@ class TestingKeLiye extends StatelessWidget {
       ),
       body: ElevatedButton(
         onPressed: () async {
-          var some =
-              await section_model.Section().getSectionFacultyAdvisors("AB2");
+          var some = await user_model.User()
+              .getStudentFromUid("n84jT5BWVAgSbS1TYrQ2Ak9Kupg1");
           print(some);
         },
         child: Text("DABAO"),
