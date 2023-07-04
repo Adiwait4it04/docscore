@@ -8,8 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:docscore/resources/constants/colors.dart';
-import 'package:docscore/Faculty/faculty_login.dart';
-import 'package:docscore/Faculty/faculty_signup.dart';
+import 'package:docscore/resources/constants.dart';
 import 'package:docscore/Student/student_signup.dart';
 
 void main() async {
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: StudentLoginPage(),
+      home: const StudentSignup(),
       // home: StreamBuilder(
       //   stream: AuthMethods().auth.authStateChanges(),
       //   builder: (context, snapshot) {
