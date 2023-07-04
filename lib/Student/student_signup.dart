@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last, unused_import, unused_field
 import 'package:docscore/Faculty/utils/utils.dart';
+import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +93,10 @@ class _StudentSignupState extends State<StudentSignup> {
       // Add validation that the student already does not exist in database
       if (await users_model.User().alreadyExists(_regnoController.text)) {
         showSnackBar("Student already exists", context);
+        replaceScreen(
+          context,
+          Student_home_page(regno: _regnoController.text),
+        );
 
         setState(() {
           _isLoading = false;
@@ -119,6 +124,10 @@ class _StudentSignupState extends State<StudentSignup> {
           );
 
           showSnackBar("Signup completed", context);
+          replaceScreen(
+            context,
+            Student_home_page(regno: _regnoController.text),
+          );
         } else {
           showSnackBar("Signup failed", context);
         }

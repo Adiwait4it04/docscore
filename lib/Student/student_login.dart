@@ -37,11 +37,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
 
   @override
   void navigateToSignup() {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => const StudentSignup(),
-      ),
-    );
+    replaceScreen(context, const StudentSignup());
   }
 
   @override
@@ -156,7 +152,10 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                           passwordController.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text("Please fill all the fields"),
+                            backgroundColor: Colors.red,
+                            content: Text(
+                              "Please fill all the fields",
+                            ),
                           ),
                         );
                       } else {
