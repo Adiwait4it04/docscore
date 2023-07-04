@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
 import 'package:docscore/Student/student_home.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class StudentLoginPage extends StatefulWidget {
   StudentLoginPage({super.key});
@@ -22,10 +23,15 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
 
   //sign user in method
   void signUserIn() async {
-    String res = await AuthMethods().loginStudent(
+    List<String?> res = await AuthMethods().loginStudent(
         email: emailController.text, password: passwordController.text);
-    if (res == "Success") {
-      replaceScreen(context, const Student_home_page());
+    if (res[0] == "Success") {
+      String regno = await user_model.User().getStudentFromUid(res[1]!);
+      replaceScreen(
+          context,
+          Student_home_page(
+            regno: regno,
+          ));
     }
   }
 
@@ -175,6 +181,10 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                         ),
                       ),
                     ),
+                  ),
+
+                  const SizedBox(
+                    height: 10,
                   ),
 
                   //not a member?Register now

@@ -115,7 +115,9 @@ class _adddocsState extends State<adddocs> {
                                         );
                                         replaceScreen(
                                           context,
-                                          const Student_home_page(),
+                                          const Student_home_page(
+                                            regno: "RA2111051010028",
+                                          ),
                                         );
                                       }
                                     : null,
@@ -172,7 +174,8 @@ class _adddocsState extends State<adddocs> {
                                       );
                                       replaceScreen(
                                         context,
-                                        const Student_home_page(),
+                                        const Student_home_page(
+                                            regno: "RA2111051010028"),
                                       );
                                     }
                                   : null,
@@ -229,7 +232,8 @@ class _adddocsState extends State<adddocs> {
                                       );
                                       replaceScreen(
                                         context,
-                                        const Student_home_page(),
+                                        const Student_home_page(
+                                            regno: "RA2111051010028"),
                                       );
                                     }
                                   : null,

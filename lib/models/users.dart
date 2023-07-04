@@ -89,14 +89,13 @@ class User {
     return Regno;
   }
 
-  Future getStudentFromUid(String uid) async {
+  Future<String> getStudentFromUid(String uid) async {
     QuerySnapshot querySnapshot =
         await _firestore.collection("users").where("uid", isEqualTo: uid).get();
     String regno = "";
     querySnapshot.docs.forEach((element) {
       regno = element.id;
     });
-    print(regno);
     return regno;
   }
 }

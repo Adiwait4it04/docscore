@@ -4,16 +4,24 @@ import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Student_home_page extends StatefulWidget {
-  const Student_home_page({super.key});
+  const Student_home_page({
+    super.key,
+    required this.regno,
+  });
+
+  final String? regno;
 
   @override
   State<Student_home_page> createState() => _Student_home_pageState();
 }
 
 class _Student_home_pageState extends State<Student_home_page> {
+  // final String regno = ;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -60,7 +68,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0, left: 15),
                     child: Text(
-                      "Hi,Student!",
+                      "Hi,Student! with reg no ${widget.regno}",
                       style: GoogleFonts.montserrat(
                         fontSize: 35,
                         fontWeight: FontWeight.w500,
