@@ -127,8 +127,6 @@ class _StudentSignupState extends State<StudentSignup> {
           _isLoading = false;
         });
       }
-    } else {
-      print("Did not validate");
     }
 
     setState(() {
@@ -378,6 +376,10 @@ class _StudentSignupState extends State<StudentSignup> {
                     ),
 
                     // transition to login
+
+                    const SizedBox(
+                      height: 5,
+                    ),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
