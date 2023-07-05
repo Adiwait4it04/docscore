@@ -232,9 +232,9 @@ class _StudentSignupState extends State<StudentSignup> {
                           if (value!.isEmpty) {
                             return "Enter an email";
                           }
-                          // if (!value.toLowerCase().endsWith("@srmist.edu.in")) {
-                          //   return "Enter a valid SRM email";
-                          // }
+                          if (!value.toLowerCase().endsWith("@srmist.edu.in")) {
+                            return "Enter a valid SRM email";
+                          }
 
                           return null;
                         },
