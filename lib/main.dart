@@ -1,5 +1,6 @@
 // ignore_for_file: unused_import
 
+import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/models/testingkeliye.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const StudentSignup(),
+      home: const adddocs0(),
       // home: StreamBuilder(
       //   stream: AuthMethods().auth.authStateChanges(),
       //   builder: (context, snapshot) {

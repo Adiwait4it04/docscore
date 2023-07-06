@@ -13,6 +13,14 @@ class adddocs0 extends StatefulWidget {
   State<adddocs0> createState() => _adddocs0State();
 }
 
+List<String> _sections = [
+  "CBSE",
+  "ICSE",
+  "State Board",
+  "Other",
+];
+String boards = "";
+
 class _adddocs0State extends State<adddocs0> {
   @override
   Widget build(BuildContext context) {
@@ -29,6 +37,49 @@ class _adddocs0State extends State<adddocs0> {
             const Center(
               child: Text('10th Marksheet'),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
+              child: DropdownButtonFormField(
+                validator: (value) {
+                  if (value == null) {
+                    return "Select your section";
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderSide: Divider.createBorderSide(context)),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: Divider.createBorderSide(context)),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: Divider.createBorderSide(context)),
+                  errorBorder: OutlineInputBorder(
+                      borderSide: Divider.createBorderSide(context)),
+                  contentPadding: EdgeInsets.all(8.0),
+                  filled: true,
+                  fillColor: Colors.white,
+                ),
+                hint: const Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 10,
+                  ),
+                  child: Text("Select your Board"),
+                ),
+                items: _sections.map((String item) {
+                  return DropdownMenuItem(
+                    value: item,
+                    child: Text(item),
+                  );
+                }).toList(),
+                onChanged: (String? value) {
+                  setState(() {
+                    boards = value!;
+                  });
+                },
+              ),
+            ),
             GestureDetector(
               onTap: () {
                 setState(
@@ -44,15 +95,23 @@ class _adddocs0State extends State<adddocs0> {
                   const Student_home_page(regno: "RA2111051010009"),
                 );
               },
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: const Center(
-                  child: Text('Upload details'),
+              child: InkWell(
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF090F30),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  child: const Text(
+                    "Upload Document",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
