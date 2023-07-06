@@ -95,7 +95,7 @@ class _StudentSignupState extends State<StudentSignup> {
         showSnackBar("Student already exists", context);
         replaceScreen(
           context,
-          Student_home_page(regno: _regnoController.text),
+          StudentLoginPage(),
         );
 
         setState(() {
@@ -126,7 +126,7 @@ class _StudentSignupState extends State<StudentSignup> {
           showSnackBar("Signup completed", context);
           replaceScreen(
             context,
-            Student_home_page(regno: _regnoController.text),
+            StudentLoginPage(),
           );
         } else {
           showSnackBar("Signup failed", context);
