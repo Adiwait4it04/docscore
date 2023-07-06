@@ -38,7 +38,6 @@ StudentHomeWidget(index) {
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Icon(
             Icons.document_scanner,
@@ -47,7 +46,6 @@ StudentHomeWidget(index) {
           Text(
             items[index],
             style: GoogleFonts.montserrat(
-              fontSize: 15,
               color: const Color(0xFF2A519D),
               fontWeight: FontWeight.w800,
             ),
