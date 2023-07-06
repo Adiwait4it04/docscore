@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, avoid_unnecessary_containers
 
+import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -21,6 +22,21 @@ List buttonStates = [
   true,
   true,
 ];
+List name = [
+  "10th Marksheet",
+  "12th Marksheet",
+  "CGPA Details",
+  "Github Profile",
+  "Coding Practice Platform Profile",
+  "Internship Experience",
+  "Skillset & Standard Certifications Completed",
+  "Projects Done",
+  "Full Stack Developer Experience",
+  "Coding Competitions & Hackathon Experience",
+  "Inhouse Projects Done",
+  "Membership of Professional Bodies",
+  "CCC Rank",
+];
 
 class adddocs extends StatefulWidget {
   const adddocs({super.key});
@@ -30,21 +46,6 @@ class adddocs extends StatefulWidget {
 }
 
 class _adddocsState extends State<adddocs> {
-  List<String> name = [
-    "10th Marksheet",
-    "12th Marksheet",
-    "CGPA Details",
-    "Github Profile",
-    "Coding Practice Platform Profile",
-    "Internship Experience",
-    "Skillset & Standard Certifications Completed",
-    "Projects Done",
-    "Full Stack Developer Experience",
-    "Coding Competitions & Hackathon Experience",
-    "Inhouse Projects Done",
-    "Membership of Professional Bodies",
-    "CCC Rank",
-  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -101,10 +102,20 @@ class _adddocsState extends State<adddocs> {
                   ),
                   if (buttonStates[0] == false &&
                       buttonStates[1] == false &&
-                      buttonStates[2] == false)
+                      buttonStates[2] == false &&
+                      buttonStates[3] == false &&
+                      buttonStates[4] == false &&
+                      buttonStates[5] == false &&
+                      buttonStates[6] == false &&
+                      buttonStates[7] == false &&
+                      buttonStates[8] == false &&
+                      buttonStates[9] == false &&
+                      buttonStates[10] == false &&
+                      buttonStates[11] == false &&
+                      buttonStates[12] == false)
                     Center(
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 40.0, left: 15),
+                        padding: const EdgeInsets.only(top: 100, left: 15),
                         child: Text(
                           "All Documents Added",
                           style: GoogleFonts.montserrat(
@@ -129,19 +140,9 @@ class _adddocsState extends State<adddocs> {
                               child: GestureDetector(
                                 onTap: buttonStates[0]
                                     ? () {
-                                        setState(
-                                          () {
-                                            additems(
-                                              name[0],
-                                            );
-                                            buttonStates[0] = false;
-                                          },
-                                        );
-                                        replaceScreen(
+                                        nextScreen(
                                           context,
-                                          const Student_home_page(
-                                            regno: "RA2111051010028",
-                                          ),
+                                          const adddocs0(),
                                         );
                                       }
                                     : null,
@@ -490,25 +491,29 @@ class _adddocsState extends State<adddocs> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Container(
-                                      child: Text(
-                                        name[6],
-                                        style: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w700,
-                                          color: Colors.black,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          name[6],
+                                          overflow: TextOverflow.clip,
+                                          softWrap: false,
+                                          style: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -663,23 +668,30 @@ class _adddocsState extends State<adddocs> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[9],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Container(
+                                        child: Text(
+                                          name[6],
+                                          overflow: TextOverflow.clip,
+                                          softWrap: false,
+                                          style: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
                                         color: Colors.black,
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
