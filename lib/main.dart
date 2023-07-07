@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const adddocs0(),
+      home: StudentLoginPage(),
       // home: StreamBuilder(
       //   stream: AuthMethods().auth.authStateChanges(),
       //   builder: (context, snapshot) {
