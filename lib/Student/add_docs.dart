@@ -5,6 +5,7 @@ import 'package:docscore/Student/documentdetails/12th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/CGPA_Details.dart';
 import 'package:docscore/Student/documentdetails/Coding_Practice_Platform_Profile.dart';
 import 'package:docscore/Student/documentdetails/Github_Profile.dart';
+import 'package:docscore/Student/documentdetails/Internship.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -378,9 +379,9 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[5]
                                   ? () {
-                                      nextScreen(
+                                      replaceScreen(
                                         context,
-                                        const adddocs4(),
+                                        const adddocs5(),
                                       );
                                     }
                                   : null,
