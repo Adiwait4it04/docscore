@@ -1,30 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/widgets/test_form_field.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs0 extends StatefulWidget {
-  const adddocs0({super.key});
+class adddocs3 extends StatefulWidget {
+  const adddocs3({super.key});
 
   @override
-  State<adddocs0> createState() => _adddocs0State();
+  State<adddocs3> createState() => _adddocs3State();
 }
 
-final TextEditingController _percent_calc = TextEditingController();
+TextEditingController _linkcontroller = TextEditingController();
 
-List<String> _sections = [
-  "CBSE",
-  "ICSE",
-  "State Board",
-  "Other",
-];
-String boards = "";
-
-class _adddocs0State extends State<adddocs0> {
+class _adddocs3State extends State<adddocs3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +65,7 @@ class _adddocs0State extends State<adddocs0> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "${name[0]}",
+                          "${name[3]}",
                           style: GoogleFonts.montserrat(
                             fontSize: 35,
                             fontWeight: FontWeight.w500,
@@ -85,58 +77,12 @@ class _adddocs0State extends State<adddocs0> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-                  child: DropdownButtonFormField(
-                    validator: (value) {
-                      if (value == null) {
-                        return "Select your section";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      contentPadding: const EdgeInsets.all(8.0),
-                      filled: true,
-                    ),
-                    hint: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: Text("Select your Board"),
-                    ),
-                    items: _sections.map((String item) {
-                      return DropdownMenuItem(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        boards = value!;
-                      });
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 100, bottom: 220),
                   child: TextForm(
-                    textEditingController: _percent_calc,
-                    hintText: '% of English + Maths + Science+2 subjects',
-                    textInputType: TextInputType.number,
+                    textEditingController: _linkcontroller,
+                    hintText: "Enter Github Profile Link",
+                    textInputType: TextInputType.text,
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Enter a percentage";
@@ -146,39 +92,15 @@ class _adddocs0State extends State<adddocs0> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: DottedBorder(
-                    color: Colors.black,
-                    strokeWidth: 4,
-                    dashPattern: const [30, 30],
-                    child: Container(
-                      height: 250,
-                      width: 320,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
                   child: GestureDetector(
                     onTap: () {
                       setState(
                         () {
                           additems(
-                            name[0],
+                            name[3],
                           );
-                          buttonStates[0] = false;
+                          buttonStates[3] = false;
                         },
                       );
                       replaceScreen(
@@ -198,7 +120,7 @@ class _adddocs0State extends State<adddocs0> {
                           ),
                         ),
                         child: const Text(
-                          "Upload Document",
+                          "Upload Link",
                           style: TextStyle(
                             color: Colors.white,
                           ),

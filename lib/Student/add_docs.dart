@@ -1,6 +1,10 @@
 // ignore_for_file: camel_case_types, avoid_unnecessary_containers
 
 import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
+import 'package:docscore/Student/documentdetails/12th_Marksheet.dart';
+import 'package:docscore/Student/documentdetails/CGPA_Details.dart';
+import 'package:docscore/Student/documentdetails/Coding_Practice_Platform_Profile.dart';
+import 'package:docscore/Student/documentdetails/Github_Profile.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -188,19 +192,7 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[1]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[1],
-                                          );
-                                          buttonStates[1] = false;
-                                        },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
-                                      );
+                                      nextScreen(context, const adddocs1());
                                     }
                                   : null,
                               child: Padding(
@@ -245,19 +237,7 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[2]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[2],
-                                          );
-                                          buttonStates[2] = false;
-                                        },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
-                                      );
+                                      nextScreen(context, const adddocs2());
                                     }
                                   : null,
                               child: Padding(
@@ -302,18 +282,9 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[3]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[3],
-                                          );
-                                          buttonStates[3] = false;
-                                        },
-                                      );
-                                      replaceScreen(
+                                      nextScreen(
                                         context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
+                                        const adddocs3(),
                                       );
                                     }
                                   : null,
@@ -359,18 +330,9 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[4]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[4],
-                                          );
-                                          buttonStates[4] = false;
-                                        },
-                                      );
                                       replaceScreen(
                                         context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
+                                        const adddocs4(),
                                       );
                                     }
                                   : null,
@@ -416,18 +378,9 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[5]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[5],
-                                          );
-                                          buttonStates[5] = false;
-                                        },
-                                      );
-                                      replaceScreen(
+                                      nextScreen(
                                         context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
+                                        const adddocs4(),
                                       );
                                     }
                                   : null,

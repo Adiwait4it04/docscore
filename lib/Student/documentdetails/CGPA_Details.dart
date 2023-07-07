@@ -1,30 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/widgets/test_form_field.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs0 extends StatefulWidget {
-  const adddocs0({super.key});
+class adddocs2 extends StatefulWidget {
+  const adddocs2({super.key});
 
   @override
-  State<adddocs0> createState() => _adddocs0State();
+  State<adddocs2> createState() => _adddocs2State();
 }
 
 final TextEditingController _percent_calc = TextEditingController();
 
 List<String> _sections = [
-  "CBSE",
-  "ICSE",
-  "State Board",
-  "Other",
+  "AB1",
+  "AB2",
+  "R1",
+  "R2",
 ];
 String boards = "";
 
-class _adddocs0State extends State<adddocs0> {
+class _adddocs2State extends State<adddocs2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +73,7 @@ class _adddocs0State extends State<adddocs0> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "${name[0]}",
+                          "${name[2]}",
                           style: GoogleFonts.montserrat(
                             fontSize: 35,
                             fontWeight: FontWeight.w500,
@@ -114,7 +114,7 @@ class _adddocs0State extends State<adddocs0> {
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
                       ),
-                      child: Text("Select your Board"),
+                      child: Text("Select your Section"),
                     ),
                     items: _sections.map((String item) {
                       return DropdownMenuItem(
@@ -135,7 +135,7 @@ class _adddocs0State extends State<adddocs0> {
                   ),
                   child: TextForm(
                     textEditingController: _percent_calc,
-                    hintText: '% of English + Maths + Science+2 subjects',
+                    hintText: "Enter your CGPA",
                     textInputType: TextInputType.number,
                     validator: (value) {
                       if (value!.isEmpty) {
@@ -146,39 +146,15 @@ class _adddocs0State extends State<adddocs0> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: DottedBorder(
-                    color: Colors.black,
-                    strokeWidth: 4,
-                    dashPattern: const [30, 30],
-                    child: Container(
-                      height: 250,
-                      width: 320,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
                   child: GestureDetector(
                     onTap: () {
                       setState(
                         () {
                           additems(
-                            name[0],
+                            name[2],
                           );
-                          buttonStates[0] = false;
+                          buttonStates[2] = false;
                         },
                       );
                       replaceScreen(

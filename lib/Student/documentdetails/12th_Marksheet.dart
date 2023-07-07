@@ -1,17 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/widgets/test_form_field.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs0 extends StatefulWidget {
-  const adddocs0({super.key});
+class adddocs1 extends StatefulWidget {
+  const adddocs1({super.key});
 
   @override
-  State<adddocs0> createState() => _adddocs0State();
+  State<adddocs1> createState() => _adddocs1State();
 }
 
 final TextEditingController _percent_calc = TextEditingController();
@@ -24,7 +24,7 @@ List<String> _sections = [
 ];
 String boards = "";
 
-class _adddocs0State extends State<adddocs0> {
+class _adddocs1State extends State<adddocs1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +73,7 @@ class _adddocs0State extends State<adddocs0> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "${name[0]}",
+                          "${name[1]}",
                           style: GoogleFonts.montserrat(
                             fontSize: 35,
                             fontWeight: FontWeight.w500,
@@ -176,9 +176,9 @@ class _adddocs0State extends State<adddocs0> {
                       setState(
                         () {
                           additems(
-                            name[0],
+                            name[1],
                           );
-                          buttonStates[0] = false;
+                          buttonStates[1] = false;
                         },
                       );
                       replaceScreen(

@@ -1,30 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/widgets/test_form_field.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs0 extends StatefulWidget {
-  const adddocs0({super.key});
+class adddocs4 extends StatefulWidget {
+  const adddocs4({super.key});
 
   @override
-  State<adddocs0> createState() => _adddocs0State();
+  State<adddocs4> createState() => _adddocs4State();
 }
 
-final TextEditingController _percent_calc = TextEditingController();
+TextEditingController _hackerrank = TextEditingController();
+TextEditingController _codechef = TextEditingController();
+TextEditingController _codeforces = TextEditingController();
+TextEditingController _leetcode = TextEditingController();
 
-List<String> _sections = [
-  "CBSE",
-  "ICSE",
-  "State Board",
-  "Other",
-];
-String boards = "";
-
-class _adddocs0State extends State<adddocs0> {
+class _adddocs4State extends State<adddocs4> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,12 +67,15 @@ class _adddocs0State extends State<adddocs0> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
-                        child: Text(
-                          "${name[0]}",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 35,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+                        child: FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            "${name[4]}",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 19,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -85,88 +83,63 @@ class _adddocs0State extends State<adddocs0> {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-                  child: DropdownButtonFormField(
-                    validator: (value) {
-                      if (value == null) {
-                        return "Select your section";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderSide: Divider.createBorderSide(context),
-                      ),
-                      contentPadding: const EdgeInsets.all(8.0),
-                      filled: true,
-                    ),
-                    hint: const Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                      ),
-                      child: Text("Select your Board"),
-                    ),
-                    items: _sections.map((String item) {
-                      return DropdownMenuItem(
-                        value: item,
-                        child: Text(item),
-                      );
-                    }).toList(),
-                    onChanged: (String? value) {
-                      setState(() {
-                        boards = value!;
-                      });
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                  ),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 30, bottom: 30),
                   child: TextForm(
-                    textEditingController: _percent_calc,
-                    hintText: '% of English + Maths + Science+2 subjects',
-                    textInputType: TextInputType.number,
+                    textEditingController: _hackerrank,
+                    hintText: "Enter Hackerrank Profile Link",
+                    textInputType: TextInputType.text,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Enter a percentage";
+                        return "Enter a link";
                       }
                       return null;
                     },
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: DottedBorder(
-                    color: Colors.black,
-                    strokeWidth: 4,
-                    dashPattern: const [30, 30],
-                    child: Container(
-                      height: 250,
-                      width: 320,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
-                      ),
-                    ),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 30, bottom: 30),
+                  child: TextForm(
+                    textEditingController: _codechef,
+                    hintText: "Enter CodeChef Profile Link",
+                    textInputType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter a link";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 30, bottom: 30),
+                  child: TextForm(
+                    textEditingController: _codeforces,
+                    hintText: "Enter CodeForces Profile Link",
+                    textInputType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter a link";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 30, bottom: 30),
+                  child: TextForm(
+                    textEditingController: _leetcode,
+                    hintText: "Enter Leetcode Profile Link",
+                    textInputType: TextInputType.text,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Enter a link";
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 Padding(
@@ -176,9 +149,9 @@ class _adddocs0State extends State<adddocs0> {
                       setState(
                         () {
                           additems(
-                            name[0],
+                            name[4],
                           );
-                          buttonStates[0] = false;
+                          buttonStates[4] = false;
                         },
                       );
                       replaceScreen(
@@ -198,7 +171,7 @@ class _adddocs0State extends State<adddocs0> {
                           ),
                         ),
                         child: const Text(
-                          "Upload Document",
+                          "Upload Link",
                           style: TextStyle(
                             color: Colors.white,
                           ),
