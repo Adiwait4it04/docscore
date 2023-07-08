@@ -6,6 +6,7 @@ import 'package:docscore/Student/documentdetails/CGPA_Details.dart';
 import 'package:docscore/Student/documentdetails/Coding_Practice_Platform_Profile.dart';
 import 'package:docscore/Student/documentdetails/Github_Profile.dart';
 import 'package:docscore/Student/documentdetails/Internship.dart';
+import 'package:docscore/Student/documentdetails/Skillset&Standard_Certifications_Completed.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -427,18 +428,9 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[6]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[6],
-                                          );
-                                          buttonStates[6] = false;
-                                        },
-                                      );
                                       replaceScreen(
                                         context,
-                                        const Student_home_page(
-                                            regno: "RA2111051010028"),
+                                        const adddocs6(),
                                       );
                                     }
                                   : null,

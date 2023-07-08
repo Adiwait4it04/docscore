@@ -7,16 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs5 extends StatefulWidget {
-  const adddocs5({super.key});
+class adddocs6 extends StatefulWidget {
+  const adddocs6({super.key});
 
   @override
-  State<adddocs5> createState() => _adddocs5State();
+  State<adddocs6> createState() => _adddocs6State();
 }
 
-TextEditingController _internship = TextEditingController();
-
-class _adddocs5State extends State<adddocs5> {
+class _adddocs6State extends State<adddocs6> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +63,8 @@ class _adddocs5State extends State<adddocs5> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "${name[5]}",
+                          "${name[6]}",
                           style: GoogleFonts.montserrat(
-                            fontSize: 25,
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
                           ),
@@ -81,17 +78,16 @@ class _adddocs5State extends State<adddocs5> {
                     vertical: 20,
                     horizontal: 20,
                   ),
-                  child: TextForm(
-                    textEditingController: _internship,
-                    hintText: 'No. of Internships',
-                    textInputType: TextInputType.number,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Enter a no. of internships";
-                      }
-                      return null;
-                    },
-                  ),
+                  // child: TextForm(
+                  //   hintText: 'No. of Internships',
+                  //   textInputType: TextInputType.number,
+                  //   validator: (value) {
+                  //     if (value!.isEmpty) {
+                  //       return "Enter a no. of internships";
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50.0),
@@ -124,9 +120,9 @@ class _adddocs5State extends State<adddocs5> {
                       setState(
                         () {
                           additems(
-                            name[5],
+                            name[6],
                           );
-                          buttonStates[5] = false;
+                          buttonStates[6] = false;
                         },
                       );
                       replaceScreen(
