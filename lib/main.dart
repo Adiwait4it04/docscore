@@ -3,6 +3,7 @@
 import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
+import 'package:docscore/Student/student_profile.dart';
 import 'package:docscore/models/testingkeliye.dart';
 import 'package:docscore/resources/auth/auth_method.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: Student_home_page(
-        regno: "RA2111051010009",
-      ),
+      home: StudentProfile(),
       // home: StreamBuilder(
       //   stream: AuthMethods().auth.authStateChanges(),
       //   builder: (context, snapshot) {
