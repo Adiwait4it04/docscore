@@ -1,3 +1,5 @@
+import 'package:docscore/Student/student_home.dart';
+import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +29,13 @@ class StudentProfile extends StatelessWidget {
                         Row(
                           children: [
                             IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                replaceScreen(
+                                  context,
+                                  const Student_home_page(
+                                      regno: "RA2111051010002"),
+                                );
+                              },
                               icon: const Icon(Icons.arrow_back,
                                   color: Colors.white, size: 25),
                             ),
@@ -39,7 +47,7 @@ class StudentProfile extends StatelessWidget {
                           ],
                         ),
                         Container(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           height: 70,
                           width: 100,
                           child: Image.asset(
@@ -118,7 +126,7 @@ class StudentProfile extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
-                                color: Color(0xffA2A7B8)),
+                                color: const Color(0xffA2A7B8)),
                             child: const ListTile(
                               title: Text("Documents Uploaded"),
                               trailing: Icon(Icons.arrow_forward_ios),
@@ -130,7 +138,7 @@ class StudentProfile extends StatelessWidget {
                           child: Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
-                                color: Color(0xffA2A7B8)),
+                                color: const Color(0xffA2A7B8)),
                             child: const ListTile(
                               title: Text("Documents yet to be Uploaded"),
                               trailing: Icon(Icons.arrow_forward_ios),
@@ -151,7 +159,10 @@ class StudentProfile extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const Icon(Icons.email),
-                            Text("   docscore@gmail.com", style: heading,)
+                            Text(
+                              "   docscore@gmail.com",
+                              style: heading,
+                            )
                           ],
                         )
                       ],
