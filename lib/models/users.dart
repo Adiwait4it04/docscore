@@ -98,4 +98,18 @@ class User {
     });
     return regno;
   }
+
+  Future<String> updateStudentDocUrl(
+      String regno, String doc, String url) async {
+    String res = "Error";
+    try {
+      await _firestore.collection("users").doc(regno).update({
+        "documents": {doc: url}
+      });
+      res = "Success";
+    } on FirebaseException {
+      res = "Error";
+    }
+    return res;
+  }
 }

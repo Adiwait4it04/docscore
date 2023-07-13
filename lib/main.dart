@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: StudentProfile(),
-      home: const adddocs5(),
+      home: const adddocs1(),
       // home: Student_home_page(
       //   regno: "RA2111051010009",
       // ),

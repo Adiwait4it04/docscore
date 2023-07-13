@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
@@ -10,6 +11,7 @@ import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import '../../resources/firestore/storage.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs1 extends StatefulWidget {
   const adddocs1({super.key});
@@ -31,6 +33,7 @@ String boards = "";
 class _adddocs1State extends State<adddocs1> {
   File? file = null;
   PlatformFile? pickedFile;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Widget getFileSelectWidget() {
     if (file == null) {
@@ -71,7 +74,12 @@ class _adddocs1State extends State<adddocs1> {
   void upload_doc() async {
     if (file == null) return;
     String url = await StorageMethods().uploadDocument("12th marksheet", file!);
-    print(url);
+    user_model.User user = user_model.User();
+    String res = await user.updateStudentDocUrl(
+        await user.getStudentFromUid(_auth.currentUser!.uid),
+        "12th_Marksheet",
+        url);
+    print(res);
   }
 
   @override
