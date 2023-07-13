@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
@@ -6,6 +8,8 @@ import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:file_picker/file_picker.dart';
+import '../../resources/firestore/storage.dart';
 
 class adddocs1 extends StatefulWidget {
   const adddocs1({super.key});
@@ -25,6 +29,51 @@ List<String> _sections = [
 String boards = "";
 
 class _adddocs1State extends State<adddocs1> {
+  File? file = null;
+  PlatformFile? pickedFile;
+
+  Widget getFileSelectWidget() {
+    if (file == null) {
+      return IconButton(
+        onPressed: select_doc,
+        icon: Icon(
+          Icons.folder_shared,
+          size: 50,
+        ),
+      );
+    } else {
+      return TextButton(
+        onPressed: select_doc,
+        child: Text(
+          pickedFile!.name,
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+      );
+    }
+  }
+
+  void select_doc() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    if (result == null) return;
+    pickedFile = result.files.first;
+    setState(() {
+      file = File(pickedFile!.path!);
+    });
+  }
+
+  void upload_doc() async {
+    if (file == null) return;
+    String url = await StorageMethods().uploadDocument("12th marksheet", file!);
+    print(url);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +139,7 @@ class _adddocs1State extends State<adddocs1> {
                   child: DropdownButtonFormField(
                     validator: (value) {
                       if (value == null) {
-                        return "Select your section";
+                        return "Select your Board";
                       }
                       return null;
                     },
@@ -157,15 +206,7 @@ class _adddocs1State extends State<adddocs1> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
-                      ),
+                      child: getFileSelectWidget(),
                     ),
                   ),
                 ),
@@ -187,6 +228,7 @@ class _adddocs1State extends State<adddocs1> {
                       );
                     },
                     child: InkWell(
+                      onTap: upload_doc,
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.5,
                         alignment: Alignment.center,
