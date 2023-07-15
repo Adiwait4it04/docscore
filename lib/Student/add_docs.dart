@@ -239,7 +239,10 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[2]
                                   ? () {
-                                      nextScreen(context, const adddocs2());
+                                      nextScreen(
+                                        context,
+                                        const adddocs2(),
+                                      );
                                     }
                                   : null,
                               child: Padding(

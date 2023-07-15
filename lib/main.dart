@@ -3,6 +3,7 @@
 import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/12th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/Internship.dart';
+import 'package:docscore/Student/sidebar_menu.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/Student/student_profile.dart';
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: StudentProfile(),
-      home: const adddocs1(),
+
+      home: const Sidebar_menu(),
       // home: Student_home_page(
       //   regno: "RA2111051010009",
       // ),
