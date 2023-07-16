@@ -75,7 +75,7 @@ class _adddocs1State extends State<adddocs1> {
     if (file == null) return;
     String url = await StorageMethods().uploadDocument("12th marksheet", file!);
     user_model.User user = user_model.User();
-    String res = await user.updateStudentDocUrl(
+    String res = await user_model.User().updateStudentDocUrl(
         await user.getStudentFromUid(_auth.currentUser!.uid),
         "12th_Marksheet",
         url);
@@ -232,7 +232,7 @@ class _adddocs1State extends State<adddocs1> {
                       );
                       replaceScreen(
                         context,
-                        const Student_home_page(regno: "RA2111051010009"),
+                        Student_home_page(),
                       );
                     },
                     child: InkWell(

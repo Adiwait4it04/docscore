@@ -156,7 +156,7 @@ class _adddocs4State extends State<adddocs4> {
                       );
                       replaceScreen(
                         context,
-                        const Student_home_page(regno: "RA2111051010009"),
+                        Student_home_page(),
                       );
                     },
                     child: InkWell(

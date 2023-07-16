@@ -32,8 +32,7 @@ class StudentProfile extends StatelessWidget {
                               onPressed: () {
                                 replaceScreen(
                                   context,
-                                  const Student_home_page(
-                                      regno: "RA2111051010002"),
+                                  Student_home_page(),
                                 );
                               },
                               icon: const Icon(Icons.arrow_back,

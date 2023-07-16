@@ -17,12 +17,10 @@ class TestingKeLiye extends StatelessWidget {
       ),
       body: ElevatedButton(
         onPressed: () async {
-          final result = await FilePicker.platform.pickFiles();
-          if (result == null) return;
-          final PlatformFile? file = result.files.first;
-          String url =
-              await StorageMethods().uploadDocument("test", File(file!.path!));
-          print(url);
+          String regno = "RA2111051010029";
+          String doc = "10th_Marksheet";
+          String? res = await user_model.User().deleteDoc(regno, doc);
+          print(res);
         },
         child: Text("DABAO"),
       ),

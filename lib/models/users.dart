@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/models/student.dart' as student_model;
 import 'package:docscore/models/faculty.dart' as faculty_model;
 
@@ -12,12 +13,7 @@ class User {
     String res = "Error";
     try {
       student_model.Student student =
-          student_model.Student(uid: uid, name: studentName, documents: {
-        "10th_Marksheet": "",
-        "12th_Marksheet": "",
-        "JEE_Admit_Card": "",
-        "JEE_Rank_Card": "",
-      });
+          student_model.Student(uid: uid, name: studentName, documents: {});
 
       await _firestore.collection("users").doc(regno).set(
             student.toJson(),
@@ -109,6 +105,25 @@ class User {
       res = "Success";
     } on FirebaseException {
       res = "Error";
+    }
+    return res;
+  }
+
+  Future<String> deleteDoc(String regno, String doc) async {
+    String res = "Error";
+    try {
+      DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+          await _firestore.collection("users").doc(regno).get();
+      Map<String, dynamic>? data = querySnapshot.data();
+      data?["documents"].remove(doc);
+      _firestore
+          .collection("users")
+          .doc(regno)
+          .update(data!.cast<Object, Object?>());
+
+      res = "Success";
+    } catch (e) {
+      res = e.toString();
     }
     return res;
   }
