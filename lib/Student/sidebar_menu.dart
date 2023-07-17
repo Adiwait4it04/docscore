@@ -74,6 +74,7 @@ class NewWidget extends StatelessWidget {
   }
 }
 
+//info card
 class InfoCard extends StatelessWidget {
   const InfoCard({
     super.key,
