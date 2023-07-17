@@ -173,7 +173,7 @@ class _adddocs5State extends State<adddocs5> {
                       );
                       replaceScreen(
                         context,
-                        const Student_home_page(regno: "RA2111051010009"),
+                        Student_home_page(),
                       );
                     },
                     child: InkWell(

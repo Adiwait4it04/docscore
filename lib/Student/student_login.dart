@@ -30,12 +30,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
       List<String?> res = await AuthMethods().loginStudent(
           email: emailController.text, password: passwordController.text);
       if (res[0] == "Success") {
-        String regno = await user_model.User().getStudentFromUid(res[1]!);
-        replaceScreen(
-            context,
-            Student_home_page(
-              regno: regno,
-            ));
+        replaceScreen(context, Student_home_page());
       }
     }
   }
@@ -51,39 +46,31 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
-          child: SafeArea(
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Color(0xFF1F2C45),
-                    Color(0xFF274B93),
-                    Color(0XFF2A519D),
-                  ],
-                ),
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [
+                  Color(0xFF1F2C45),
+                  Color(0xFF274B93),
+                  Color(0XFF2A519D),
+                ],
               ),
+            ),
+            child: SafeArea(
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const SizedBox(
-                      height: 50,
-                    ),
                     //logo
                     Image.asset(
                       'assets/SRM_1.jpg',
                       height: 150,
                       width: 150,
                     ),
-
-                    const SizedBox(
-                      height: 50,
-                    ),
-
                     //welcome back text field
                     Text(
                       "Welcome Back to the Student's Portal",
