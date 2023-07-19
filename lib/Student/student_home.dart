@@ -35,8 +35,8 @@ class _Student_home_pageState extends State<Student_home_page> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     getRegNo();
+    super.initState();
   }
 
   @override
