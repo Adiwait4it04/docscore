@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: StudentProfile(),
-      home: TestingKeLiye(),
+      home: StudentLoginPage(),
       // home: Student_home_page(
       //   regno: "RA2111051010009",
       // ),

@@ -3,10 +3,15 @@
 import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/12th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/CGPA_Details.dart';
+import 'package:docscore/Student/documentdetails/CodingCompetions.dart';
 import 'package:docscore/Student/documentdetails/Coding_Practice_Platform_Profile.dart';
+import 'package:docscore/Student/documentdetails/FullStackDeveloper_Experience.dart';
 import 'package:docscore/Student/documentdetails/Github_Profile.dart';
+import 'package:docscore/Student/documentdetails/Inhouse.dart';
 import 'package:docscore/Student/documentdetails/Internship.dart';
+import 'package:docscore/Student/documentdetails/Membersofproffessionalbodies.dart';
 import 'package:docscore/Student/documentdetails/Skillset&Standard_Certifications_Completed.dart';
+import 'package:docscore/Student/documentdetails/projets_done.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -485,18 +490,7 @@ class _adddocsState extends State<adddocs> {
                             child: GestureDetector(
                               onTap: buttonStates[7]
                                   ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[7],
-                                          );
-                                          buttonStates[7] = false;
-                                        },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
-                                      );
+                                      replaceScreen(context, const adddocs7());
                                     }
                                   : null,
                               child: Padding(
@@ -543,15 +537,11 @@ class _adddocsState extends State<adddocs> {
                                   ? () {
                                       setState(
                                         () {
-                                          additems(
-                                            name[4],
+                                          replaceScreen(
+                                            context,
+                                            const adddocs8(),
                                           );
-                                          buttonStates[8] = false;
                                         },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
                                       );
                                     }
                                   : null,
@@ -599,15 +589,11 @@ class _adddocsState extends State<adddocs> {
                                   ? () {
                                       setState(
                                         () {
-                                          additems(
-                                            name[9],
+                                          replaceScreen(
+                                            context,
+                                            const adddocs9(),
                                           );
-                                          buttonStates[9] = false;
                                         },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
                                       );
                                     }
                                   : null,
@@ -622,7 +608,7 @@ class _adddocsState extends State<adddocs> {
                                     children: [
                                       Container(
                                         child: Text(
-                                          name[6],
+                                          name[9],
                                           overflow: TextOverflow.clip,
                                           softWrap: false,
                                           style: GoogleFonts.montserrat(
@@ -662,15 +648,11 @@ class _adddocsState extends State<adddocs> {
                                   ? () {
                                       setState(
                                         () {
-                                          additems(
-                                            name[10],
+                                          replaceScreen(
+                                            context,
+                                            const adddocs10(),
                                           );
-                                          buttonStates[10] = false;
                                         },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
                                       );
                                     }
                                   : null,
@@ -718,15 +700,11 @@ class _adddocsState extends State<adddocs> {
                                   ? () {
                                       setState(
                                         () {
-                                          additems(
-                                            name[11],
+                                          replaceScreen(
+                                            context,
+                                            const adddocs11(),
                                           );
-                                          buttonStates[11] = false;
                                         },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
                                       );
                                     }
                                   : null,
@@ -739,62 +717,6 @@ class _adddocsState extends State<adddocs> {
                                   children: [
                                     Text(
                                       name[11],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[12]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[12]
-                                  ? () {
-                                      setState(
-                                        () {
-                                          additems(
-                                            name[12],
-                                          );
-                                          buttonStates[12] = false;
-                                        },
-                                      );
-                                      replaceScreen(
-                                        context,
-                                        Student_home_page(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[12],
                                       style: GoogleFonts.montserrat(
                                         fontWeight: FontWeight.w700,
                                         color: Colors.black,

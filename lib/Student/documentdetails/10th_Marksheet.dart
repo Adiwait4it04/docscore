@@ -47,7 +47,7 @@ class _adddocs0State extends State<adddocs0> {
 
   void upload_doc() async {
     if (file == null) return;
-    String url = await StorageMethods().uploadDocument("10th marksheet", file!);
+    String url = await StorageMethods().uploadDocument("${name[0]}", file!);
     print(url);
   }
 

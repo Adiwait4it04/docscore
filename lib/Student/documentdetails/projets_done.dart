@@ -5,6 +5,10 @@ import 'package:docscore/resources/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:docscore/resources/firestore/storage.dart';
+import 'package:docscore/widgets/test_form_field.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 
 class adddocs7 extends StatefulWidget {
   const adddocs7({super.key});
@@ -14,6 +18,51 @@ class adddocs7 extends StatefulWidget {
 }
 
 class _adddocs7State extends State<adddocs7> {
+  File? file = null;
+  PlatformFile? pickedFile;
+
+  void select_doc() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    if (result == null) return;
+    pickedFile = result.files.first;
+    setState(() {
+      file = File(pickedFile!.path!);
+    });
+  }
+
+  void upload_doc() async {
+    if (file == null) return;
+    String url = await StorageMethods().uploadDocument("${name[7]}", file!);
+    print(url);
+  }
+
+  Widget getFileSelectWidget() {
+    if (file == null) {
+      return IconButton(
+        onPressed: select_doc,
+        icon: Icon(
+          Icons.folder_shared,
+          size: 50,
+        ),
+      );
+    } else {
+      return TextButton(
+        onPressed: select_doc,
+        child: Text(
+          pickedFile!.name,
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,14 +149,8 @@ class _adddocs7State extends State<adddocs7> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
+                      child: Center(
+                        child: getFileSelectWidget(),
                       ),
                     ),
                   ),
@@ -130,6 +173,7 @@ class _adddocs7State extends State<adddocs7> {
                       );
                     },
                     child: InkWell(
+                      onTap: upload_doc,
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.5,
                         alignment: Alignment.center,
