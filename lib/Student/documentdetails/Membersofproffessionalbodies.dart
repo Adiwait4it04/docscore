@@ -1,10 +1,17 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
+import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:file_picker/file_picker.dart';
+import '../../resources/firestore/storage.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs11 extends StatefulWidget {
   const adddocs11({super.key});
@@ -14,6 +21,57 @@ class adddocs11 extends StatefulWidget {
 }
 
 class _adddocs11State extends State<adddocs11> {
+  File? file = null;
+  PlatformFile? pickedFile;
+
+  Widget getFileSelectWidget() {
+    if (file == null) {
+      return IconButton(
+        onPressed: select_doc,
+        icon: Icon(
+          Icons.folder_shared,
+          size: 50,
+        ),
+      );
+    } else {
+      return TextButton(
+        onPressed: select_doc,
+        child: Text(
+          pickedFile!.name,
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+      );
+    }
+  }
+
+  void select_doc() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    if (result == null) return;
+    pickedFile = result.files.first;
+    setState(() {
+      file = File(pickedFile!.path!);
+    });
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  void upload_doc() async {
+    if (file == null) return;
+    String url = await StorageMethods().uploadDocument("${name[11]}", file!);
+    user_model.User user = user_model.User();
+    String res = await user_model.User().updateStudentDocUrl(
+        await user.getStudentFromUid(_auth.currentUser!.uid),
+        "${name[11]}",
+        url);
+    print(res);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -114,6 +172,22 @@ class _adddocs11State extends State<adddocs11> {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: DottedBorder(
+                    color: Colors.black,
+                    strokeWidth: 4,
+                    dashPattern: const [30, 30],
+                    child: Container(
+                      height: 250,
+                      width: 320,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: getFileSelectWidget(),
+                    ),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
                   child: GestureDetector(
                     onTap: () {
@@ -131,6 +205,7 @@ class _adddocs11State extends State<adddocs11> {
                       );
                     },
                     child: InkWell(
+                      onTap: upload_doc,
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.5,
                         alignment: Alignment.center,

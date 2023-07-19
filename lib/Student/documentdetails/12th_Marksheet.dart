@@ -73,11 +73,11 @@ class _adddocs1State extends State<adddocs1> {
 
   void upload_doc() async {
     if (file == null) return;
-    String url = await StorageMethods().uploadDocument("12th marksheet", file!);
+    String url = await StorageMethods().uploadDocument("${name[1]}", file!);
     user_model.User user = user_model.User();
     String res = await user_model.User().updateStudentDocUrl(
         await user.getStudentFromUid(_auth.currentUser!.uid),
-        "12th_Marksheet",
+        "${name[1]}",
         url);
     print(res);
   }

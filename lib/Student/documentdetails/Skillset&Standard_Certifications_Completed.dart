@@ -1,14 +1,17 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants/colors.dart';
+import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
-import 'package:docscore/resources/firestore/storage.dart';
-import 'package:docscore/widgets/test_form_field.dart';
-import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import '../../resources/firestore/storage.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs6 extends StatefulWidget {
   const adddocs6({super.key});
@@ -33,10 +36,16 @@ class _adddocs6State extends State<adddocs6> {
     });
   }
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   void upload_doc() async {
     if (file == null) return;
     String url = await StorageMethods().uploadDocument("${name[6]}", file!);
-    print(url);
+    user_model.User user = user_model.User();
+    String res = await user_model.User().updateStudentDocUrl(
+        await user.getStudentFromUid(_auth.currentUser!.uid),
+        "${name[6]}",
+        url);
+    print(res);
   }
 
   Widget getFileSelectWidget() {
