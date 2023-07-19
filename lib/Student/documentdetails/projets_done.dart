@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
 
-class adddocs6 extends StatefulWidget {
-  const adddocs6({super.key});
+class adddocs7 extends StatefulWidget {
+  const adddocs7({super.key});
 
   @override
-  State<adddocs6> createState() => _adddocs6State();
+  State<adddocs7> createState() => _adddocs7State();
 }
 
-class _adddocs6State extends State<adddocs6> {
+class _adddocs7State extends State<adddocs7> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +62,7 @@ class _adddocs6State extends State<adddocs6> {
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
                         child: Text(
-                          "${name[6]}",
+                          "${name[7]}",
                           style: GoogleFonts.montserrat(
                             fontWeight: FontWeight.w500,
                             color: Colors.white,
@@ -119,9 +119,9 @@ class _adddocs6State extends State<adddocs6> {
                       setState(
                         () {
                           additems(
-                            name[6],
+                            name[7],
                           );
-                          buttonStates[6] = false;
+                          buttonStates[7] = false;
                         },
                       );
                       replaceScreen(
