@@ -1,7 +1,7 @@
 class Student {
   final String name;
   final String role;
-  final Map<String, dynamic> documents;
+  final Map<String, List<dynamic>> documents;
   final String uid;
 
   Student({
