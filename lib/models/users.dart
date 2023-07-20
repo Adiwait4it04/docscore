@@ -100,7 +100,9 @@ class User {
     String res = "Error";
     try {
       await _firestore.collection("users").doc(regno).update({
-        "documents": {doc: url}
+        "documents": {
+          doc: [false, url]
+        }
       });
       res = "Success";
     } on FirebaseException {
