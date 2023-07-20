@@ -49,11 +49,11 @@ class _adddocs0State extends State<adddocs0> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   void upload_doc() async {
     if (file == null) return;
-    String url = await StorageMethods().uploadDocument("${name[1]}", file!);
+    String url = await StorageMethods().uploadDocument("${name[0]}", file!);
     user_model.User user = user_model.User();
     String res = await user_model.User().updateStudentDocUrl(
         await user.getStudentFromUid(_auth.currentUser!.uid),
-        "${name[1]}",
+        "${name[0]}",
         url);
     print(res);
   }
@@ -222,38 +222,22 @@ class _adddocs0State extends State<adddocs0> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[0],
-                          );
-                          buttonStates[0] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      onTap: upload_doc,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: upload_doc,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Document",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Document",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),
