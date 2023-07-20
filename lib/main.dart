@@ -35,19 +35,19 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: StudentProfile(),
-      home: StudentLoginPage(),
+      // home: StudentLoginPage(),
       // home: Student_home_page(
       //   regno: "RA2111051010009",
       // ),
-      // home: StreamBuilder(
-      //   stream: AuthMethods().auth.authStateChanges(),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       return const Student_home_page();
-      //     }
-      //     return StudentSignup();
-      //   },
-      // ),
+      home: StreamBuilder(
+        stream: AuthMethods().auth.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Student_home_page();
+          }
+          return StudentSignup();
+        },
+      ),
     );
   }
 }
