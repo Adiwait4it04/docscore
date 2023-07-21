@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,13 +58,34 @@ class _adddocs0State extends State<adddocs0> {
         "${name[0]}",
         url);
     print(res);
+    if (res == "success") {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Document Uploaded Successfully"),
+        ),
+      );
+      additems(
+        name[0],
+      );
+      buttonStates[0] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Document Upload Failed"),
+        ),
+      );
+    }
   }
 
   Widget getFileSelectWidget() {
     if (file == null) {
       return IconButton(
         onPressed: select_doc,
-        icon: Icon(
+        icon: const Icon(
           Icons.folder_shared,
           size: 50,
         ),
@@ -117,7 +140,7 @@ class _adddocs0State extends State<adddocs0> {
                           onPressed: () {
                             replaceScreen(
                               context,
-                              adddocs(),
+                              const adddocs(),
                             );
                           },
                           icon: Icon(
