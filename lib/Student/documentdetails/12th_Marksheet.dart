@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -80,6 +82,14 @@ class _adddocs1State extends State<adddocs1> {
         "${name[1]}",
         url);
     print(res);
+    additems(
+      name[1],
+    );
+    buttonStates[1] = false;
+    replaceScreen(
+      context,
+      Student_home_page(),
+    );
   }
 
   @override

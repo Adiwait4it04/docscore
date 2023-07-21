@@ -46,6 +46,14 @@ class _adddocs6State extends State<adddocs6> {
         "${name[6]}",
         url);
     print(res);
+    additems(
+      name[6],
+    );
+    buttonStates[6] = false;
+    replaceScreen(
+      context,
+      Student_home_page(),
+    );
   }
 
   Widget getFileSelectWidget() {
@@ -166,38 +174,22 @@ class _adddocs6State extends State<adddocs6> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[6],
-                          );
-                          buttonStates[6] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      onTap: upload_doc,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: upload_doc,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Document",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Document",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -69,6 +71,14 @@ class _adddocs11State extends State<adddocs11> {
         await user.getStudentFromUid(_auth.currentUser!.uid),
         "${name[11]}",
         url);
+    additems(
+      name[11],
+    );
+    buttonStates[11] = false;
+    replaceScreen(
+      context,
+      Student_home_page(),
+    );
     print(res);
   }
 
@@ -159,68 +169,28 @@ class _adddocs11State extends State<adddocs11> {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: const Center(
-                        child: IconButton(
-                          onPressed: null,
-                          icon: Icon(
-                            Icons.folder_shared,
-                            size: 50,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
-                  child: DottedBorder(
-                    color: Colors.black,
-                    strokeWidth: 4,
-                    dashPattern: const [30, 30],
-                    child: Container(
-                      height: 250,
-                      width: 320,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
                       child: getFileSelectWidget(),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[11],
-                          );
-                          buttonStates[11] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      onTap: upload_doc,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: upload_doc,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Document",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Document",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),

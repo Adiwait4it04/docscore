@@ -58,27 +58,14 @@ class _adddocs0State extends State<adddocs0> {
         "${name[0]}",
         url);
     print(res);
-    if (res == "success") {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Document Uploaded Successfully"),
-        ),
-      );
-      additems(
-        name[0],
-      );
-      buttonStates[0] = false;
-      replaceScreen(
-        context,
-        Student_home_page(),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Document Upload Failed"),
-        ),
-      );
-    }
+    additems(
+      name[0],
+    );
+    buttonStates[0] = false;
+    replaceScreen(
+      context,
+      Student_home_page(),
+    );
   }
 
   Widget getFileSelectWidget() {

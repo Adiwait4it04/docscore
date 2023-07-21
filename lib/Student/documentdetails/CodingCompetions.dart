@@ -46,6 +46,14 @@ class _adddocs9State extends State<adddocs9> {
         "${name[9]}",
         url);
     print(res);
+    additems(
+      name[9],
+    );
+    buttonStates[9] = false;
+    replaceScreen(
+      context,
+      Student_home_page(),
+    );
   }
 
   Widget getFileSelectWidget() {
@@ -84,25 +92,31 @@ class _adddocs9State extends State<adddocs9> {
           ),
           child: SingleChildScrollView(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: SizedBox(
-                    height: 50,
-                    width: 120,
-                    child: Image.asset(
-                      'assets/SRM_1.jpg',
-                      fit: BoxFit.fill,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: 50,
+                        width: 120,
+                        child: Image.asset(
+                          'assets/SRM_1.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 15),
+                        padding: const EdgeInsets.only(left: 7),
                         child: IconButton(
                           onPressed: () {
                             replaceScreen(
@@ -117,8 +131,8 @@ class _adddocs9State extends State<adddocs9> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
                         child: Text(
                           "${name[9]}",
                           style: GoogleFonts.montserrat(
@@ -164,38 +178,22 @@ class _adddocs9State extends State<adddocs9> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[9],
-                          );
-                          buttonStates[9] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      onTap: upload_doc,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: upload_doc,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Document",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Document",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),
