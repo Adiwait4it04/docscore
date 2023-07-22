@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
@@ -6,6 +7,7 @@ import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs3 extends StatefulWidget {
   const adddocs3({super.key});
@@ -14,9 +16,29 @@ class adddocs3 extends StatefulWidget {
   State<adddocs3> createState() => _adddocs3State();
 }
 
-TextEditingController _linkcontroller = TextEditingController();
-
 class _adddocs3State extends State<adddocs3> {
+  TextEditingController _linkcontroller = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void upload_url() async {
+    String link = _linkcontroller.text;
+    String res = await user_model.User().updateStudentDocUrl(
+      await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid),
+      "${name[3]}",
+      link,
+    );
+    if (res == "Success") {
+      additems(
+        name[0],
+      );
+      buttonStates[0] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
