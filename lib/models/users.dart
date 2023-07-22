@@ -67,7 +67,8 @@ class User {
     DocumentSnapshot querySnapshot =
         await _firestore.collection("users").doc(regNo).get();
     if (querySnapshot.exists) {
-      return querySnapshot["Documents"];
+      // print(querySnapshot["documents"]);
+      return querySnapshot["documents"];
     } else {
       return null;
     }
@@ -99,11 +100,13 @@ class User {
       String regno, String doc, String url) async {
     String res = "Error";
     try {
-      await _firestore.collection("users").doc(regno).update({
-        "documents": {
-          doc: [false, url]
-        }
-      });
+      var documents = await getStudentDocumentList(regno);
+
+      documents[doc] = [false, url];
+      await _firestore
+          .collection("users")
+          .doc(regno)
+          .update({"documents": documents});
       res = "Success";
     } on FirebaseException {
       res = "Error";
