@@ -71,15 +71,16 @@ class _adddocs11State extends State<adddocs11> {
         await user.getStudentFromUid(_auth.currentUser!.uid),
         "${name[11]}",
         url);
-    additems(
-      name[11],
-    );
-    buttonStates[11] = false;
-    replaceScreen(
-      context,
-      Student_home_page(),
-    );
-    print(res);
+    if (res == "Success") {
+      additems(
+        name[11],
+      );
+      buttonStates[11] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    }
   }
 
   @override

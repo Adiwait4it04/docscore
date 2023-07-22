@@ -71,15 +71,16 @@ class _adddocs5State extends State<adddocs5> {
     user_model.User user = user_model.User();
     String res = await user_model.User().updateStudentDocUrl(
         await user.getStudentFromUid(_auth.currentUser!.uid), name[5], url);
-    print(res);
-    additems(
-      name[5],
-    );
-    buttonStates[5] = false;
-    replaceScreen(
-      context,
-      Student_home_page(),
-    );
+    if (res == "Success") {
+      additems(
+        name[5],
+      );
+      buttonStates[5] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    }
   }
 
   @override

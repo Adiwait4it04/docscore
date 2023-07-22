@@ -45,15 +45,16 @@ class _adddocs10State extends State<adddocs10> {
         await user.getStudentFromUid(_auth.currentUser!.uid),
         "${name[10]}",
         url);
-    print(res);
-    additems(
-      name[10],
-    );
-    buttonStates[10] = false;
-    replaceScreen(
-      context,
-      Student_home_page(),
-    );
+    if (res == "Success") {
+      additems(
+        name[10],
+      );
+      buttonStates[10] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    }
   }
 
   Widget getFileSelectWidget() {
