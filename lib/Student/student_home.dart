@@ -23,19 +23,24 @@ class _Student_home_pageState extends State<Student_home_page> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   String? regno;
+  String? name;
 
-  void getRegNo() async {
+  void getStudent() async {
     String num =
-        await user_model.User().getStudentFromUid(_auth.currentUser!.uid);
+        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
+
+    String StName = await user_model.User().getStudentNameFromRegNo(num);
+
     setState(() {
       regno = num;
+      name = StName;
     });
   }
 
   @override
   void initState() {
     // TODO: implement initState
-    getRegNo();
+    getStudent();
     super.initState();
   }
 
@@ -85,7 +90,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0, left: 15),
                     child: Text(
-                      "Hi,${regno}!",
+                      "Hi,${name}!",
                       style: GoogleFonts.montserrat(
                         fontSize: 35,
                         fontWeight: FontWeight.w500,

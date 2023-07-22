@@ -64,11 +64,10 @@ class User {
   }
 
   Future getStudentDocumentList(String regNo) async {
-    DocumentSnapshot querySnapshot =
+    DocumentSnapshot docSnapshot =
         await _firestore.collection("users").doc(regNo).get();
-    if (querySnapshot.exists) {
-      // print(querySnapshot["documents"]);
-      return querySnapshot["documents"];
+    if (docSnapshot.exists) {
+      return docSnapshot["documents"];
     } else {
       return null;
     }
@@ -86,14 +85,22 @@ class User {
     return Regno;
   }
 
-  Future<String> getStudentFromUid(String uid) async {
-    QuerySnapshot querySnapshot =
+  Future<String> getStudentRegNoFromUid(String uid) async {
+    QuerySnapshot regQuerysnapshot =
         await _firestore.collection("users").where("uid", isEqualTo: uid).get();
     String regno = "";
-    querySnapshot.docs.forEach((element) {
+    regQuerysnapshot.docs.forEach((element) {
       regno = element.id;
     });
+
     return regno;
+  }
+
+  Future<String> getStudentNameFromRegNo(String regno) async {
+    DocumentSnapshot<Map<String, dynamic>> querySnapshot =
+        await _firestore.collection("users").doc(regno).get();
+    Map<String, dynamic>? data = querySnapshot.data();
+    return data!["name"];
   }
 
   Future<String> updateStudentDocUrl(

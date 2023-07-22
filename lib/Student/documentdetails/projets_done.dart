@@ -42,7 +42,7 @@ class _adddocs7State extends State<adddocs7> {
     String url = await StorageMethods().uploadDocument("${name[7]}", file!);
     user_model.User user = user_model.User();
     String res = await user_model.User().updateStudentDocUrl(
-        await user.getStudentFromUid(_auth.currentUser!.uid),
+        await user.getStudentRegNoFromUid(_auth.currentUser!.uid),
         "${name[7]}",
         url);
     if (res == "Success") {
