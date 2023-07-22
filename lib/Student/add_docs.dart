@@ -46,7 +46,6 @@ List name = [
   "Coding Competitions & Hackathon Experience",
   "Inhouse Projects Done",
   "Membership of Professional Bodies",
-  "CCC Rank",
 ];
 
 class adddocs extends StatefulWidget {
@@ -82,9 +81,11 @@ class _adddocsState extends State<adddocs> {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          replaceScreen(context, Student_home_page());
+                        },
                         icon: Icon(
-                          Icons.menu,
+                          Icons.arrow_back,
                           color: ButtonColor(),
                           size: 30,
                         ),

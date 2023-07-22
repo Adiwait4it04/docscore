@@ -89,12 +89,14 @@ class _Student_home_pageState extends State<Student_home_page> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 40.0, left: 15),
-                    child: Text(
-                      "Hi,${name}!",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 35,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+                    child: FittedBox(
+                      child: Text(
+                        "Hi,${name}!",
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 30 * MediaQuery.of(context).textScaleFactor,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

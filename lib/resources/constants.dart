@@ -36,21 +36,25 @@ StudentHomeWidget(index) {
         color: const Color(0xFFE9EFFF),
         borderRadius: BorderRadius.circular(10.0),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          const Icon(
-            Icons.document_scanner,
-            color: Color(0xFF2A519D),
-          ),
-          Text(
-            items[index],
-            style: GoogleFonts.montserrat(
-              color: const Color(0xFF2A519D),
-              fontWeight: FontWeight.w800,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Icon(
+              Icons.document_scanner,
+              color: Color(0xFF2A519D),
             ),
-          ),
-        ],
+            FittedBox(
+              child: Text(
+                items[index],
+                style: GoogleFonts.montserrat(
+                  color: const Color(0xFF2A519D),
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     ),
   );

@@ -1,3 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
@@ -6,6 +11,9 @@ import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:file_picker/file_picker.dart';
+import '../../resources/firestore/storage.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs2 extends StatefulWidget {
   const adddocs2({super.key});
@@ -22,9 +30,69 @@ List<String> _sections = [
   "R1",
   "R2",
 ];
-String boards = "";
 
 class _adddocs2State extends State<adddocs2> {
+  String boards = "";
+  File? file = null;
+  PlatformFile? pickedFile;
+
+  void select_doc() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+    if (result == null) return;
+    pickedFile = result.files.first;
+    setState(() {
+      file = File(pickedFile!.path!);
+    });
+  }
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  void upload_doc() async {
+    if (file == null) return;
+    String url = await StorageMethods().uploadDocument("${name[2]}", file!);
+    user_model.User user = user_model.User();
+    String res = await user_model.User().updateStudentDocUrl(
+        await user.getStudentRegNoFromUid(_auth.currentUser!.uid),
+        "${name[2]}",
+        url);
+    if (res == "Success") {
+      additems(
+        name[2],
+      );
+      buttonStates[2] = false;
+      replaceScreen(
+        context,
+        Student_home_page(),
+      );
+    }
+  }
+
+  Widget getFileSelectWidget() {
+    if (file == null) {
+      return IconButton(
+        onPressed: select_doc,
+        icon: const Icon(
+          Icons.folder_shared,
+          size: 50,
+        ),
+      );
+    } else {
+      return TextButton(
+        onPressed: select_doc,
+        child: Text(
+          pickedFile!.name,
+          style: GoogleFonts.montserrat(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -146,38 +214,39 @@ class _adddocs2State extends State<adddocs2> {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: DottedBorder(
+                    color: Colors.black,
+                    strokeWidth: 4,
+                    dashPattern: const [30, 30],
+                    child: Container(
+                      height: 250,
+                      width: 320,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: getFileSelectWidget(),
+                    ),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[2],
-                          );
-                          buttonStates[2] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: upload_doc,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Document",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Document",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),
