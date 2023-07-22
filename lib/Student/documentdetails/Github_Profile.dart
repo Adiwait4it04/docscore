@@ -1,3 +1,7 @@
+// ignore_for_file: unused_import, use_build_context_synchronously
+
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/Student/add_docs.dart';
@@ -7,6 +11,8 @@ import 'package:docscore/widgets/test_form_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:dotted_border/dotted_border.dart';
 import '../../resources/constants.dart';
+import 'package:file_picker/file_picker.dart';
+import '../../resources/firestore/storage.dart';
 import 'package:docscore/models/users.dart' as user_model;
 
 class adddocs3 extends StatefulWidget {
@@ -20,7 +26,7 @@ class _adddocs3State extends State<adddocs3> {
   TextEditingController _linkcontroller = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void upload_url() async {
+  void update_url() async {
     String link = _linkcontroller.text;
     String res = await user_model.User().updateStudentDocUrl(
       await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid),
@@ -29,15 +35,33 @@ class _adddocs3State extends State<adddocs3> {
     );
     if (res == "Success") {
       additems(
-        name[0],
+        name[3],
       );
-      buttonStates[0] = false;
+      buttonStates[3] = false;
       replaceScreen(
         context,
         Student_home_page(),
       );
     }
   }
+  // void upload_url() async {
+  //   String link = _linkcontroller.text;
+  //   String res = await user_model.User().updateStudentDocUrl(
+  //     await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid),
+  //     "${name[3]}",
+  //     link,
+  //   );
+  //   if (res == "Success") {
+  //     additems(
+  //       name[0],
+  //     );
+  //     buttonStates[0] = false;
+  //     replaceScreen(
+  //       context,
+  //       Student_home_page(),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,37 +139,22 @@ class _adddocs3State extends State<adddocs3> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(
-                        () {
-                          additems(
-                            name[3],
-                          );
-                          buttonStates[3] = false;
-                        },
-                      );
-                      replaceScreen(
-                        context,
-                        Student_home_page(),
-                      );
-                    },
-                    child: InkWell(
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF090F30),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                  child: InkWell(
+                    onTap: update_url,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * 0.5,
+                      alignment: Alignment.center,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF090F30),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(15),
                         ),
-                        child: const Text(
-                          "Upload Link",
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                      ),
+                      child: const Text(
+                        "Upload Link",
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),

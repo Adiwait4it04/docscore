@@ -109,6 +109,7 @@ class _adddocs9State extends State<adddocs9> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
@@ -126,14 +127,11 @@ class _adddocs9State extends State<adddocs9> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: Text(
-                          "${name[9]}",
-                          style: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
-                          ),
+                      Text(
+                        "${name[9]}",
+                        style: GoogleFonts.montserrat(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
                         ),
                       ),
                     ],

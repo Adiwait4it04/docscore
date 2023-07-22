@@ -48,6 +48,7 @@ class _adddocs4State extends State<adddocs4> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
@@ -65,17 +66,14 @@ class _adddocs4State extends State<adddocs4> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15),
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            "${name[4]}",
-                            style: GoogleFonts.montserrat(
-                              fontSize: 19,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
+                      FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          "${name[4]}",
+                          style: GoogleFonts.montserrat(
+                            fontSize: 19,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
                           ),
                         ),
                       ),

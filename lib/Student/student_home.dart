@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:docscore/models/users.dart' as user_model;
+import 'package:docscore/Student/student_home.dart';
 
 class Student_home_page extends StatefulWidget {
   Student_home_page({
@@ -37,9 +38,17 @@ class _Student_home_pageState extends State<Student_home_page> {
     });
   }
 
+  getregno() async {
+    String num =
+        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
+
+    return num.toString();
+  }
+
   @override
   void initState() {
     // TODO: implement initState
+    getregno();
     getStudent();
     super.initState();
   }

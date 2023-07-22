@@ -111,6 +111,7 @@ class _adddocs6State extends State<adddocs6> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 15),
