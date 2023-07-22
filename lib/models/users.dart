@@ -102,7 +102,7 @@ class User {
     try {
       var documents = await getStudentDocumentList(regno);
 
-      documents[doc] = [false, url];
+      documents[doc] = [0, url];
       await _firestore
           .collection("users")
           .doc(regno)
