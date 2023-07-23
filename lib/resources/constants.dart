@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:docscore/models/users.dart' as user_model;
+import 'package:url_launcher/url_launcher.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 List<String> items = [];
@@ -36,6 +37,16 @@ StudentHomeWidget(index) {
     padding:
         const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
     child: InkWell(
+      onTap: () async {
+        Uri url = Uri.parse(
+            'https://firebasestorage.googleapis.com/v0/b/docscore-395b5.appspot.com/o/12th%20Marksheet%2FWwxsnORSbxUoufYbDeabzzCwtyG3?alt=media&token=4c0a6465-4a4b-4087-85ee-c448cc84c892');
+        if (!await launchUrl(
+          url,
+          mode: LaunchMode.externalApplication,
+        )) {
+          throw Exception('Could not launch $url');
+        }
+      },
       child: Container(
         height: 100,
         decoration: BoxDecoration(
