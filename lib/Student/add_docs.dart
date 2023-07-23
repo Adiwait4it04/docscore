@@ -62,7 +62,7 @@ class adddocs extends StatefulWidget {
 class _adddocsState extends State<adddocs> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  bool _isLoading = false;
+  bool isLoading = false;
 
   void initState() {
     super.initState();
@@ -71,7 +71,7 @@ class _adddocsState extends State<adddocs> {
 
   void syncFromDatabase() async {
     setState(() {
-      _isLoading = true;
+      isLoading = true;
     });
 
     Map? docs = await user_model.User().getStudentDocumentList(
@@ -87,7 +87,7 @@ class _adddocsState extends State<adddocs> {
     }
 
     setState(() {
-      _isLoading = false;
+      isLoading = false;
     });
   }
 

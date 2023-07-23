@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return Student_home_page();
           }
-          return StudentSignup();
+          return const StudentSignup();
         },
       ),
     );

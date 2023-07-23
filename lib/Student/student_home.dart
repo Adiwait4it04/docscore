@@ -1,5 +1,6 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/sidebar_menu.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -22,9 +23,33 @@ class Student_home_page extends StatefulWidget {
 
 class _Student_home_pageState extends State<Student_home_page> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String? regno;
   String? name;
+  bool isLoading = false;
+
+  void syncFromDatabase() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    Map? docs = await user_model.User().getStudentDocumentList(
+        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid));
+    if (docs == null)
+      return;
+    else {
+      for (int i = 0; i < docs.length; i++) {
+        if (docs[name?[i]] != null) {
+          buttonStates[i] = false;
+        }
+      }
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
 
   void getStudent() async {
     String num =
@@ -50,6 +75,7 @@ class _Student_home_pageState extends State<Student_home_page> {
     // TODO: implement initState
     getregno();
     getStudent();
+    syncFromDatabase();
     super.initState();
   }
 
