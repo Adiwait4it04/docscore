@@ -64,7 +64,7 @@ additems(String item) {
   items.add(item);
 }
 
-lengthogitems() {
+lengthofitems() {
   return items.length;
 }
 

@@ -63,7 +63,7 @@ class User {
     return documentNames;
   }
 
-  Future getStudentDocumentList(String regNo) async {
+  Future<Map?> getStudentDocumentList(String regNo) async {
     DocumentSnapshot docSnapshot =
         await _firestore.collection("users").doc(regNo).get();
     if (docSnapshot.exists) {
@@ -108,8 +108,7 @@ class User {
     String res = "Error";
     try {
       var documents = await getStudentDocumentList(regno);
-
-      documents[doc] = [0, url];
+      documents![doc] = [0, url];
       await _firestore
           .collection("users")
           .doc(regno)

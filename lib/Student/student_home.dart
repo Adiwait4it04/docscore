@@ -111,7 +111,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: lengthogitems(),
+                      itemCount: lengthofitems(),
                       itemBuilder: (context, int index) {
                         return SingleChildScrollView(
                           child: StudentHomeWidget(index),

@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types, avoid_unnecessary_containers
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:docscore/Student/documentdetails/10th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/12th_Marksheet.dart';
 import 'package:docscore/Student/documentdetails/CGPA_Details.dart';
@@ -15,8 +16,11 @@ import 'package:docscore/Student/documentdetails/projets_done.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
 List buttonStates = [
   true,
@@ -56,6 +60,37 @@ class adddocs extends StatefulWidget {
 }
 
 class _adddocsState extends State<adddocs> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool _isLoading = false;
+
+  void initState() {
+    super.initState();
+    syncFromDatabase();
+  }
+
+  void syncFromDatabase() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    Map? docs = await user_model.User().getStudentDocumentList(
+        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid));
+    if (docs == null)
+      return;
+    else {
+      for (int i = 0; i < docs.length; i++) {
+        if (docs[name[i]] != null) {
+          buttonStates[i] = false;
+        }
+      }
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
