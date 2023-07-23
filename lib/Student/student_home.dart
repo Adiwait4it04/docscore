@@ -28,28 +28,6 @@ class _Student_home_pageState extends State<Student_home_page> {
   String? name;
   bool isLoading = false;
 
-  void syncFromDatabase() async {
-    setState(() {
-      isLoading = true;
-    });
-
-    Map? docs = await user_model.User().getStudentDocumentList(
-        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid));
-    if (docs == null)
-      return;
-    else {
-      for (int i = 0; i < docs.length; i++) {
-        if (docs[name?[i]] != null) {
-          buttonStates[i] = false;
-        }
-      }
-    }
-
-    setState(() {
-      isLoading = false;
-    });
-  }
-
   void getStudent() async {
     String num =
         await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
@@ -61,15 +39,10 @@ class _Student_home_pageState extends State<Student_home_page> {
     });
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    getStudent();
-    syncFromDatabase_home();
-    super.initState();
-  }
-
   void syncFromDatabase_home() async {
+    setState(() {
+      isLoading = true;
+    });
     Map? docs =
         await user_model.User().getStudentDocumentList(await constants.regno);
     List? keys = docs!.keys.toList();
@@ -82,10 +55,16 @@ class _Student_home_pageState extends State<Student_home_page> {
         }
       }
     }
+
+    setState(() {
+      isLoading = false;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    getStudent();
+    syncFromDatabase_home();
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(

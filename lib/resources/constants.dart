@@ -8,6 +8,8 @@ import 'package:docscore/models/users.dart' as user_model;
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 List<String> items = [];
+List<String> item_link = [];
+List<int> item_verified = [];
 int i = 0;
 int j = i++;
 final regno = user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
@@ -36,6 +38,9 @@ StudentHomeWidget(index) {
     padding:
         const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
     child: InkWell(
+      onTap: () {
+        print(item_link[index]);
+      },
       child: Container(
         height: 100,
         decoration: BoxDecoration(
@@ -67,8 +72,11 @@ StudentHomeWidget(index) {
   );
 }
 
-additems(String item) {
+additems(String item) async {
+  Map? docs = await user_model.User().getStudentDocumentList(await regno);
   items.add(item);
+  item_link.add(docs![item][1]);
+  item_verified.add(docs[item][0]);
 }
 
 lengthofitems() {

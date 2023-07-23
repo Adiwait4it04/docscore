@@ -35,7 +35,6 @@ List buttonStates = [
   true,
   true,
   true,
-  true,
 ];
 List name = [
   "10th Marksheet",
@@ -64,11 +63,6 @@ class _adddocsState extends State<adddocs> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = false;
 
-  void initState() {
-    super.initState();
-    syncFromDatabase();
-  }
-
   void syncFromDatabase() async {
     setState(() {
       isLoading = true;
@@ -79,7 +73,7 @@ class _adddocsState extends State<adddocs> {
     if (docs == null)
       return;
     else {
-      for (int i = 0; i < docs.length; i++) {
+      for (int i = 0; i < name.length; i++) {
         if (docs[name[i]] != null) {
           buttonStates[i] = false;
         }
@@ -93,6 +87,7 @@ class _adddocsState extends State<adddocs> {
 
   @override
   Widget build(BuildContext context) {
+    syncFromDatabase();
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -158,8 +153,7 @@ class _adddocsState extends State<adddocs> {
                       buttonStates[8] == false &&
                       buttonStates[9] == false &&
                       buttonStates[10] == false &&
-                      buttonStates[11] == false &&
-                      buttonStates[12] == false)
+                      buttonStates[11] == false)
                     Center(
                       child: Padding(
                         padding: const EdgeInsets.only(top: 100, left: 15),
