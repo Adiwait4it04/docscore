@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/sidebar_menu.dart';
 import 'package:docscore/resources/constants/colors.dart';
-import 'package:docscore/resources/constants.dart';
+import 'package:docscore/resources/constants.dart' as constants;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -25,7 +25,6 @@ class _Student_home_pageState extends State<Student_home_page> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  String? regno;
   String? name;
   bool isLoading = false;
 
@@ -58,25 +57,31 @@ class _Student_home_pageState extends State<Student_home_page> {
     String StName = await user_model.User().getStudentNameFromRegNo(num);
 
     setState(() {
-      regno = num;
       name = StName;
     });
-  }
-
-  getregno() async {
-    String num =
-        await user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
-
-    return num.toString();
   }
 
   @override
   void initState() {
     // TODO: implement initState
-    getregno();
     getStudent();
-    syncFromDatabase();
+    syncFromDatabase_home();
     super.initState();
+  }
+
+  void syncFromDatabase_home() async {
+    Map? docs =
+        await user_model.User().getStudentDocumentList(await constants.regno);
+    List? keys = docs!.keys.toList();
+    for (int i = 0; i < keys.length; i++) {
+      if (docs[keys[i]] != null) {
+        if (constants.items.contains(keys[i])) {
+          continue;
+        } else {
+          constants.additems(keys[i]);
+        }
+      }
+    }
   }
 
   @override
@@ -137,10 +142,10 @@ class _Student_home_pageState extends State<Student_home_page> {
                   ),
                   Expanded(
                     child: ListView.builder(
-                      itemCount: lengthofitems(),
+                      itemCount: constants.lengthofitems(),
                       itemBuilder: (context, int index) {
                         return SingleChildScrollView(
-                          child: StudentHomeWidget(index),
+                          child: constants.StudentHomeWidget(index),
                         );
                       },
                     ),
@@ -160,7 +165,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             ),
             backgroundColor: ButtonColor(),
             onPressed: () {
-              nextScreen(
+              constants.nextScreen(
                 context,
                 const adddocs(),
               );
