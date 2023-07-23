@@ -34,43 +34,166 @@ goBack(BuildContext context) {
   return Navigator.pop(context);
 }
 
+Future<void> launchInBrowser(Uri url) async {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw Exception('Could not launch $url');
+  }
+}
+
 StudentHomeWidget(index) {
-  return Padding(
-    padding:
-        const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
-    child: InkWell(
-      onTap: () {
-        String link = item_link[index];
-      },
-      child: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          color: const Color(0xFFE9EFFF),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Icon(
-                Icons.document_scanner,
-                color: Color(0xFF2A519D),
-              ),
-              FittedBox(
-                child: Text(
-                  items[index],
-                  style: GoogleFonts.montserrat(
-                    color: const Color(0xFF2A519D),
+  if (item_verified[index] == 0) {
+    return Padding(
+      padding:
+          const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
+      child: InkWell(
+        onTap: () {
+          String link = item_link[index];
+          launchInBrowser(Uri.parse(link));
+        },
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: const Color(0xFFE9EFFF),
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+              color: const Color(0xFF7B1FA2),
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Icon(
+                  Icons.document_scanner,
+                  color: Color(0xFF2A519D),
+                ),
+                FittedBox(
+                  child: Text(
+                    items[index],
+                    style: GoogleFonts.montserrat(
+                      color: const Color(0xFF2A519D),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                const Text(
+                  "Not Yet Checked",
+                  style: TextStyle(
+                    color: Color(0xFF2A519D),
                     fontWeight: FontWeight.w800,
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
-    ),
-  );
+    );
+  }
+  if (item_verified[index] == 1) {
+    return Padding(
+      padding:
+          const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
+      child: InkWell(
+        onTap: () {
+          String link = item_link[index];
+          launchInBrowser(Uri.parse(link));
+        },
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: const Color(0xFFE9EFFF),
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+              color: const Color(0xFF43A047),
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Icon(
+                  Icons.document_scanner,
+                  color: Color(0xFF2A519D),
+                ),
+                FittedBox(
+                  child: Text(
+                    items[index],
+                    style: GoogleFonts.montserrat(
+                      color: const Color(0xFF2A519D),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                const Text(
+                  "Verified",
+                  style: TextStyle(
+                    color: Color(0xFF2A519D),
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+  if (item_verified[index] == -1) {
+    return Padding(
+      padding:
+          const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
+      child: InkWell(
+        onTap: () {
+          String link = item_link[index];
+          launchInBrowser(Uri.parse(link));
+        },
+        child: Container(
+          height: 100,
+          decoration: BoxDecoration(
+            color: const Color(0xFFE9EFFF),
+            borderRadius: BorderRadius.circular(10.0),
+            border: Border.all(
+              color: const Color(0xFFC62828),
+              width: 2,
+            ),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Icon(
+                  Icons.document_scanner,
+                  color: Color(0xFF2A519D),
+                ),
+                FittedBox(
+                  child: Text(
+                    items[index],
+                    style: GoogleFonts.montserrat(
+                      color: const Color(0xFF2A519D),
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+                const Text(
+                  "Rejected",
+                  style: TextStyle(
+                    color: Color(0xFF2A519D),
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 additems(String item) async {
