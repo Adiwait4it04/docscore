@@ -40,7 +40,7 @@ StudentHomeWidget(index) {
         const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
     child: InkWell(
       onTap: () {
-        print(item_link[index]);
+        String link = item_link[index];
       },
       child: Container(
         height: 100,
