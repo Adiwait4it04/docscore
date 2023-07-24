@@ -198,9 +198,15 @@ StudentHomeWidget(index) {
 
 additems(String item) async {
   Map? docs = await user_model.User().getStudentDocumentList(await regno);
-  items.add(item);
-  item_link.add(docs![item][1]);
-  item_verified.add(docs[item][0]);
+  if (!items.contains(item)) {
+    items.add(item);
+  }
+  if (!item_link.contains(docs![item][1])) {
+    item_link.add(docs[item][1]);
+  }
+  if (!item_verified.contains(docs[item][0])) {
+    item_verified.add(docs[item][0]);
+  }
 }
 
 lengthofitems() {
