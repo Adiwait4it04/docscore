@@ -25,6 +25,7 @@ class adddocs6 extends StatefulWidget {
 class _adddocs6State extends State<adddocs6> {
   File? file = null;
   PlatformFile? pickedFile;
+  bool isButtonActive = true;
 
   void select_doc() async {
     final result = await FilePicker.platform.pickFiles(
@@ -40,6 +41,9 @@ class _adddocs6State extends State<adddocs6> {
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   void upload_doc() async {
+    setState(() {
+      isButtonActive = false;
+    });
     if (file == null) return;
     String url = await StorageMethods().uploadDocument("${name[6]}", file!);
     user_model.User user = user_model.User();
@@ -179,24 +183,26 @@ class _adddocs6State extends State<adddocs6> {
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0, bottom: 40),
                   child: InkWell(
-                    onTap: upload_doc,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.5,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      decoration: const BoxDecoration(
-                        color: Color(0xFF090F30),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(15),
-                        ),
-                      ),
-                      child: const Text(
-                        "Upload Document",
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                    onTap: isButtonActive ? upload_doc : () {},
+                    child: isButtonActive
+                        ? Container(
+                            width: MediaQuery.of(context).size.width * 0.5,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF090F30),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(15),
+                              ),
+                            ),
+                            child: const Text(
+                              "Upload Document",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          )
+                        : const CircularProgressIndicator(),
                   ),
                 ),
               ],
