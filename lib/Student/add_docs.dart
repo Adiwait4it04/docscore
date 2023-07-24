@@ -21,6 +21,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:docscore/models/users.dart' as user_model;
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 List buttonStates = [
   true,
@@ -90,87 +91,143 @@ class _adddocsState extends State<adddocs> {
     syncFromDatabase();
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: backgroundGradient(),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.only(
-              top: 10,
-              left: 12,
-              right: 12,
-              bottom: 10,
+        body: LiquidPullToRefresh(
+          color: const Color(0xFF0D47A1),
+          backgroundColor: Colors.white,
+          springAnimationDurationInMilliseconds: 1000,
+          onRefresh: () async {
+            syncFromDatabase();
+          },
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              gradient: backgroundGradient(),
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          replaceScreen(context, Student_home_page());
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: ButtonColor(),
-                          size: 30,
-                        ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        height: 50,
-                        width: 120,
-                        child: Image.asset(
-                          'assets/SRM_1.jpg',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 15),
-                    child: Text(
-                      "Add Your Documents",
-                      style: GoogleFonts.montserrat(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  if (buttonStates[0] == false &&
-                      buttonStates[1] == false &&
-                      buttonStates[2] == false &&
-                      buttonStates[3] == false &&
-                      buttonStates[4] == false &&
-                      buttonStates[5] == false &&
-                      buttonStates[6] == false &&
-                      buttonStates[7] == false &&
-                      buttonStates[8] == false &&
-                      buttonStates[9] == false &&
-                      buttonStates[10] == false &&
-                      buttonStates[11] == false)
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 100, left: 15),
-                        child: Text(
-                          "All Documents Added",
-                          style: GoogleFonts.montserrat(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.only(
+                top: 10,
+                left: 12,
+                right: 12,
+                bottom: 10,
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            replaceScreen(context, Student_home_page());
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: ButtonColor(),
+                            size: 30,
                           ),
                         ),
+                        const Spacer(),
+                        SizedBox(
+                          height: 50,
+                          width: 120,
+                          child: Image.asset(
+                            'assets/SRM_1.jpg',
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0, left: 15),
+                      child: Text(
+                        "Add Your Documents",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
                       ),
-                    )
-                  else
-                    buttonStates[0]
+                    ),
+                    if (buttonStates[0] == false &&
+                        buttonStates[1] == false &&
+                        buttonStates[2] == false &&
+                        buttonStates[3] == false &&
+                        buttonStates[4] == false &&
+                        buttonStates[5] == false &&
+                        buttonStates[6] == false &&
+                        buttonStates[7] == false &&
+                        buttonStates[8] == false &&
+                        buttonStates[9] == false &&
+                        buttonStates[10] == false &&
+                        buttonStates[11] == false)
+                      Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 100, left: 15),
+                          child: Text(
+                            "All Documents Added",
+                            style: GoogleFonts.montserrat(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                    else
+                      buttonStates[0]
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 40.0, left: 25),
+                              child: Container(
+                                height: 60,
+                                width: 320,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white,
+                                ),
+                                child: GestureDetector(
+                                  onTap: buttonStates[0]
+                                      ? () {
+                                          nextScreen(
+                                            context,
+                                            const adddocs0(),
+                                          );
+                                        }
+                                      : null,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(
+                                          "10th Marksheet",
+                                          style: GoogleFonts.montserrat(
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              height: 0,
+                              width: 0,
+                            ),
+                    buttonStates[1]
                         ? Padding(
-                            padding: const EdgeInsets.only(top: 40.0, left: 25),
+                            padding: const EdgeInsets.only(top: 20, left: 25),
                             child: Container(
                               height: 60,
                               width: 320,
@@ -179,12 +236,9 @@ class _adddocsState extends State<adddocs> {
                                 color: Colors.white,
                               ),
                               child: GestureDetector(
-                                onTap: buttonStates[0]
+                                onTap: buttonStates[1]
                                     ? () {
-                                        nextScreen(
-                                          context,
-                                          const adddocs0(),
-                                        );
+                                        nextScreen(context, const adddocs1());
                                       }
                                     : null,
                                 child: Padding(
@@ -195,7 +249,7 @@ class _adddocsState extends State<adddocs> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text(
-                                        "10th Marksheet",
+                                        "12th Marksheet",
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
@@ -216,435 +270,37 @@ class _adddocsState extends State<adddocs> {
                             height: 0,
                             width: 0,
                           ),
-                  buttonStates[1]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[1]
-                                  ? () {
-                                      nextScreen(context, const adddocs1());
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      "12th Marksheet",
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
+                    buttonStates[2]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
                               ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[2]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[2]
-                                  ? () {
-                                      nextScreen(
-                                        context,
-                                        const adddocs2(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      "CGPA details",
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[3]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[3]
-                                  ? () {
-                                      nextScreen(
-                                        context,
-                                        const adddocs3(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[3],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[4]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[4]
-                                  ? () {
-                                      replaceScreen(
-                                        context,
-                                        const adddocs4(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[4],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[5]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[5]
-                                  ? () {
-                                      replaceScreen(
-                                        context,
-                                        const adddocs5(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[5],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[6]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[6]
-                                  ? () {
-                                      replaceScreen(
-                                        context,
-                                        const adddocs6(),
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        child: Text(
-                                          name[6],
-                                          overflow: TextOverflow.clip,
-                                          softWrap: false,
-                                          style: GoogleFonts.montserrat(
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black,
-                                          ),
-                                        ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[7]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[7]
-                                  ? () {
-                                      replaceScreen(context, const adddocs7());
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[7],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[8]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[8]
-                                  ? () {
-                                      setState(
-                                        () {
-                                          replaceScreen(
-                                            context,
-                                            const adddocs8(),
-                                          );
-                                        },
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[8],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[9]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[9]
-                                  ? () {
-                                      setState(
-                                        () {
-                                          replaceScreen(
-                                            context,
-                                            const adddocs9(),
-                                          );
-                                        },
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
+                              child: GestureDetector(
+                                onTap: buttonStates[2]
+                                    ? () {
+                                        nextScreen(
+                                          context,
+                                          const adddocs2(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Container(
-                                        child: Text(
-                                          name[9],
-                                          overflow: TextOverflow.clip,
-                                          softWrap: false,
-                                          style: GoogleFonts.montserrat(
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.black,
-                                          ),
+                                      Text(
+                                        "CGPA details",
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
                                         ),
                                       ),
                                       const Icon(
@@ -657,117 +313,473 @@ class _adddocsState extends State<adddocs> {
                                 ),
                               ),
                             ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
                           ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[10]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[10]
-                                  ? () {
-                                      setState(
-                                        () {
-                                          replaceScreen(
-                                            context,
-                                            const adddocs10(),
-                                          );
-                                        },
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[10],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
+                    buttonStates[3]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[3]
+                                    ? () {
+                                        nextScreen(
+                                          context,
+                                          const adddocs3(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[3],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
                                         color: Colors.black,
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
                           ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                  buttonStates[11]
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 25),
-                          child: Container(
-                            height: 60,
-                            width: 320,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.white,
-                            ),
-                            child: GestureDetector(
-                              onTap: buttonStates[11]
-                                  ? () {
-                                      setState(
-                                        () {
-                                          replaceScreen(
-                                            context,
-                                            const adddocs11(),
-                                          );
-                                        },
-                                      );
-                                    }
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Text(
-                                      name[11],
-                                      style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w700,
+                    buttonStates[4]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[4]
+                                    ? () {
+                                        replaceScreen(
+                                          context,
+                                          const adddocs4(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[4],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
                                         color: Colors.black,
                                       ),
-                                    ),
-                                    const Icon(
-                                      Icons.document_scanner_sharp,
-                                      size: 30,
-                                      color: Colors.black,
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
                           ),
-                        )
-                      : const SizedBox(
-                          height: 0,
-                          width: 0,
-                        ),
-                ],
+                    buttonStates[5]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[5]
+                                    ? () {
+                                        replaceScreen(
+                                          context,
+                                          const adddocs5(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[5],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[6]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[6]
+                                    ? () {
+                                        replaceScreen(
+                                          context,
+                                          const adddocs6(),
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          child: Text(
+                                            name[6],
+                                            overflow: TextOverflow.clip,
+                                            softWrap: false,
+                                            style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[7]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[7]
+                                    ? () {
+                                        replaceScreen(
+                                            context, const adddocs7());
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[7],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[8]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[8]
+                                    ? () {
+                                        setState(
+                                          () {
+                                            replaceScreen(
+                                              context,
+                                              const adddocs8(),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[8],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[9]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[9]
+                                    ? () {
+                                        setState(
+                                          () {
+                                            replaceScreen(
+                                              context,
+                                              const adddocs9(),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          child: Text(
+                                            name[9],
+                                            overflow: TextOverflow.clip,
+                                            softWrap: false,
+                                            style: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[10]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[10]
+                                    ? () {
+                                        setState(
+                                          () {
+                                            replaceScreen(
+                                              context,
+                                              const adddocs10(),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[10],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                    buttonStates[11]
+                        ? Padding(
+                            padding: const EdgeInsets.only(top: 20, left: 25),
+                            child: Container(
+                              height: 60,
+                              width: 320,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              child: GestureDetector(
+                                onTap: buttonStates[11]
+                                    ? () {
+                                        setState(
+                                          () {
+                                            replaceScreen(
+                                              context,
+                                              const adddocs11(),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    : null,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        name[11],
+                                        style: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w700,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(
+                            height: 0,
+                            width: 0,
+                          ),
+                  ],
+                ),
               ),
             ),
           ),

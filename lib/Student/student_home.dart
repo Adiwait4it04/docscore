@@ -70,6 +70,9 @@ class _Student_home_pageState extends State<Student_home_page> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: LiquidPullToRefresh(
+            color: const Color(0xFF0D47A1),
+            backgroundColor: Colors.white,
+            springAnimationDurationInMilliseconds: 1000,
             onRefresh: () async {
               syncFromDatabase_home();
             },
