@@ -11,6 +11,7 @@ import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:docscore/models/users.dart' as user_model;
 import 'package:docscore/Student/student_home.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 class Student_home_page extends StatefulWidget {
   Student_home_page({
@@ -68,68 +69,74 @@ class _Student_home_pageState extends State<Student_home_page> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              gradient: backgroundGradient(),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 12,
-                right: 12,
-                bottom: 10,
+          child: LiquidPullToRefresh(
+            onRefresh: () async {
+              syncFromDatabase_home();
+            },
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                gradient: backgroundGradient(),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.menu,
-                          color: ButtonColor(),
-                          size: 30,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 12,
+                  right: 12,
+                  bottom: 10,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.menu,
+                            color: ButtonColor(),
+                            size: 30,
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      SizedBox(
-                        height: 50,
-                        width: 120,
-                        child: Image.asset(
-                          'assets/SRM_1.jpg',
-                          fit: BoxFit.fill,
+                        const Spacer(),
+                        SizedBox(
+                          height: 50,
+                          width: 120,
+                          child: Image.asset(
+                            'assets/SRM_1.jpg',
+                            fit: BoxFit.fill,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0, left: 15),
-                    child: FittedBox(
-                      child: Text(
-                        "Hi,${name}!",
-                        style: GoogleFonts.montserrat(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30 * MediaQuery.of(context).textScaleFactor,
-                          color: Colors.white,
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0, left: 15),
+                      child: FittedBox(
+                        child: Text(
+                          "Hi,${name}!",
+                          style: GoogleFonts.montserrat(
+                            fontWeight: FontWeight.w500,
+                            fontSize:
+                                30 * MediaQuery.of(context).textScaleFactor,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: constants.lengthofitems(),
-                      itemBuilder: (context, int index) {
-                        return SingleChildScrollView(
-                          child: constants.StudentHomeWidget(index),
-                        );
-                      },
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: constants.lengthofitems(),
+                        itemBuilder: (context, int index) {
+                          return SingleChildScrollView(
+                            child: constants.StudentHomeWidget(index),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

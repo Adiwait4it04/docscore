@@ -43,6 +43,7 @@ dependencies:
   pdf_viewer_plugin: ^2.0.1
   rive: ^0.7.16
   url_launcher: ^6.1.12
+  liquid_pull_to_refresh: ^3.0.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
