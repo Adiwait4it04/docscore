@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/sidebar_menu.dart';
+import 'package:docscore/Student/student_profile.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:docscore/resources/constants.dart' as constants;
 import 'package:firebase_auth/firebase_auth.dart';
@@ -96,12 +97,21 @@ class _Student_home_pageState extends State<Student_home_page> {
                   children: [
                     Row(
                       children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.menu,
-                            color: ButtonColor(),
-                            size: 30,
+                        CircleAvatar(
+                          backgroundColor: const Color(0xFF0D47A1),
+                          child: Center(
+                            child: IconButton(
+                              onPressed: () {
+                                constants.nextScreen(
+                                  context,
+                                  const StudentProfile(),
+                                );
+                              },
+                              icon: const Icon(
+                                Icons.person,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                         const Spacer(),
