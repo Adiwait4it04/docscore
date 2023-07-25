@@ -2,194 +2,265 @@ import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:docscore/models/users.dart' as user_model;
 
-class StudentProfile extends StatelessWidget {
-  const StudentProfile({super.key});
+class StudentProfile extends StatefulWidget {
+  @override
+  _StudentProfileState createState() => _StudentProfileState();
+}
+
+class _StudentProfileState extends State<StudentProfile> {
+  late Future<Map<String, dynamic>> _studentData;
+
+  @override
+  void initState() {
+    super.initState();
+    _studentData = user_model.User().getStudentData();
+  }
 
   @override
   Widget build(BuildContext context) {
     TextStyle heading =
-        const TextStyle(fontSize: 17, fontWeight: FontWeight.bold);
+        const TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              Container(
-                height: MediaQuery.sizeOf(context).height * 0.20,
-                width: MediaQuery.sizeOf(context).width,
-                decoration: BoxDecoration(gradient: backgroundGradient()),
-                child: Column(
+    return SafeArea(
+      child: Scaffold(
+        body: FutureBuilder<Map<String, dynamic>>(
+          future: _studentData,
+          builder: (BuildContext context,
+              AsyncSnapshot<Map<String, dynamic>> snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Center(
+                child: Text('Error: ${snapshot.error}'),
+              );
+            } else {
+              Map<String, dynamic> data = snapshot.data!;
+              return SingleChildScrollView(
+                child: Stack(
                   children: [
-                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
                       children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                replaceScreen(
-                                  context,
-                                  Student_home_page(),
-                                );
-                              },
-                              icon: const Icon(Icons.arrow_back,
-                                  color: Colors.white, size: 25),
-                            ),
-                            const Text(
-                              "Profile",
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.white),
-                            )
-                          ],
-                        ),
                         Container(
-                          padding: const EdgeInsets.all(8),
-                          height: 70,
-                          width: 100,
-                          child: Image.asset(
-                            "assets/SRM_1.jpg",
+                          height: MediaQuery.of(context).size.height * 0.20,
+                          width: MediaQuery.of(context).size.width,
+                          decoration:
+                              BoxDecoration(gradient: backgroundGradient()),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.02),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          replaceScreen(
+                                            context,
+                                            Student_home_page(),
+                                          );
+                                        },
+                                        icon: const Icon(Icons.arrow_back,
+                                            color: Colors.white, size: 25),
+                                      ),
+                                      const Text(
+                                        "Profile",
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.white),
+                                      )
+                                    ],
+                                  ),
+                                  Container(
+                                    padding: const EdgeInsets.all(8),
+                                    height: 70,
+                                    width: 100,
+                                    child: Image.asset(
+                                      "assets/SRM_1.jpg",
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                height: MediaQuery.sizeOf(context).height * 0.80,
-                width: MediaQuery.sizeOf(context).width,
-                decoration: const BoxDecoration(color: Color(0xffD9D9D9)),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height * 0.065,
-                    ),
-                    const Text(
-                      "DARTHWIMP",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 30),
-                    Row(
-                      children: [
-                        const SizedBox(
-                          width: 20,
-                        ),
-                        Text(
-                          "Profile",
-                          style: heading,
+                        Container(
+                          height: MediaQuery.of(context).size.height * 0.80,
+                          width: MediaQuery.of(context).size.width,
+                          decoration:
+                              const BoxDecoration(color: Color(0xffD9D9D9)),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.065,
+                              ),
+                              const Text(
+                                "DARTHWIMP",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(height: 30),
+                              Row(
+                                children: [
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text(
+                                    "Profile",
+                                    style: heading,
+                                  )
+                                ],
+                              ),
+                              const SizedBox(height: 10),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      StudentProfileModels.profileText(
+                                          const Icon(Icons.school),
+                                          data['regno']),
+                                      StudentProfileModels.profileText(
+                                          const Icon(Icons.class_outlined),
+                                          data['section']),
+                                      StudentProfileModels.profileText(
+                                          const Icon(Icons.mail), data['mail']),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      const SizedBox(width: 25),
+                                      Text(
+                                        "Documents",
+                                        style: heading,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: const Color(0xffA2A7B8)),
+                                      child: const ListTile(
+                                        title: Text("Documents Uploaded"),
+                                        trailing: Icon(Icons.arrow_forward_ios),
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          color: const Color(0xffA2A7B8)),
+                                      child: const ListTile(
+                                        title: Text(
+                                            "Documents yet to be Uploaded"),
+                                        trailing: Icon(Icons.arrow_forward_ios),
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: [
+                                      const SizedBox(width: 25),
+                                      Text(
+                                        "Contact Us",
+                                        style: heading,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Icon(Icons.email),
+                                      Text(
+                                        "   docscore@gmail.com",
+                                        style: heading,
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 48,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {},
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.07,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
+                                      decoration: BoxDecoration(
+                                          color:
+                                              Color.fromARGB(230, 215, 34, 31),
+                                          borderRadius:
+                                              BorderRadius.circular(50)),
+                                      child: const Center(
+                                          child: Text(
+                                        "Logout",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                    ),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         )
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            StudentProfileModels.profileText(
-                                const Icon(Icons.numbers), "RA2111051010002"),
-                            StudentProfileModels.profileText(
-                                const Icon(Icons.numbers), "AB2"),
-                            StudentProfileModels.profileText(
-                                const Icon(Icons.numbers),
-                                "B.Tech CSE with gaming technology"),
-                            StudentProfileModels.profileText(
-                                const Icon(Icons.numbers),
-                                "fk061@srmist.edu.in"),
-                          ],
-                        ),
                       ],
                     ),
                     Column(
                       children: [
-                        const SizedBox(height: 10),
-                        Row(
-                          children: [
-                            const SizedBox(width: 25),
-                            Text(
-                              "Documents",
-                              style: heading,
-                            )
-                          ],
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.15,
                         ),
-                        const SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color(0xffA2A7B8)),
-                            child: const ListTile(
-                              title: Text("Documents Uploaded"),
-                              trailing: Icon(Icons.arrow_forward_ios),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: const CircleAvatar(
+                            radius: 35,
+                            backgroundColor: Colors.white,
+                            child: Icon(
+                              Icons.person,
+                              size: 45,
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(15),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: const Color(0xffA2A7B8)),
-                            child: const ListTile(
-                              title: Text("Documents yet to be Uploaded"),
-                              trailing: Icon(Icons.arrow_forward_ios),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            const SizedBox(width: 25),
-                            Text(
-                              "Contact Us",
-                              style: heading,
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.email),
-                            Text(
-                              "   docscore@gmail.com",
-                              style: heading,
-                            )
-                          ],
                         )
                       ],
                     )
                   ],
                 ),
-              )
-            ],
-          ),
-          Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.15,
-              ),
-              SizedBox(
-                width: MediaQuery.sizeOf(context).width,
-                child: const CircleAvatar(
-                  radius: 35,
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    Icons.person,
-                    size: 45,
-                  ),
-                ),
-              )
-            ],
-          )
-        ],
+              );
+            }
+          },
+        ),
       ),
     );
   }

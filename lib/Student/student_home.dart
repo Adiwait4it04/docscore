@@ -73,7 +73,7 @@ class _Student_home_pageState extends State<Student_home_page> {
 
     super.initState();
 
-    setState(() {});
+    // setState(() {});
   }
 
   @override
@@ -118,7 +118,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                               onPressed: () {
                                 constants.nextScreen(
                                   context,
-                                  const StudentProfile(),
+                                  StudentProfile(),
                                 );
                               },
                               icon: const Icon(

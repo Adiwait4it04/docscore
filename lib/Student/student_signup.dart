@@ -115,6 +115,7 @@ class _StudentSignupState extends State<StudentSignup> {
             res[1]!,
             _regnoController.text,
             _nameController.text,
+            _section!,
           );
           // add student data to sections collection
           section_model.Section().updateStudents(

@@ -2,18 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/models/student.dart' as student_model;
 import 'package:docscore/models/faculty.dart' as faculty_model;
+import 'package:docscore/resources/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class User {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   // FUNCTION TO UPDATE OR ADD INTO DATABASE
 
   // add student in user collection with nill documents uploaded
-  Future addNewStudent(String uid, String regno, String studentName) async {
+  Future addNewStudent(
+      String uid, String regno, String studentName, String section) async {
     String res = "Error";
     try {
-      student_model.Student student =
-          student_model.Student(uid: uid, name: studentName, documents: {});
+      student_model.Student student = student_model.Student(
+          uid: uid, name: studentName, documents: {}, section: section);
 
       await _firestore.collection("users").doc(regno).set(
             student.toJson(),
@@ -139,5 +143,28 @@ class User {
     return res;
   }
 
-  // Future<String> getUserEmail(String uid) {}
+  Future<String> getStudentSectionFromRegNo(String regno) async {
+    DocumentSnapshot regDocumentsnapshot =
+        await _firestore.collection("users").doc(regno).get();
+
+    String section = regDocumentsnapshot["section"];
+
+    return section;
+  }
+
+  Future<String?> getUserEmail() async {
+    String? mail = auth.currentUser!.email;
+    return mail;
+  }
+
+  Future<Map<String, dynamic>> getStudentData() async {
+    Map<String, dynamic> data = {
+      "regno": await getStudentRegNoFromUid(auth.currentUser!.uid),
+      "section": await getStudentSectionFromRegNo(await regno),
+      "name": await getStudentNameFromRegNo(await regno),
+      "mail": await getUserEmail(),
+    };
+
+    return data;
+  }
 }
