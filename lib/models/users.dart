@@ -138,4 +138,6 @@ class User {
     }
     return res;
   }
+
+  // Future<String> getUserEmail(String uid) {}
 }

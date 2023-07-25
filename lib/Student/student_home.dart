@@ -50,23 +50,36 @@ class _Student_home_pageState extends State<Student_home_page> {
     List? keys = docs!.keys.toList();
     for (int i = 0; i < keys.length; i++) {
       if (docs[keys[i]] != null) {
-        if (constants.items.contains(keys[i])) {
-          continue;
-        } else {
-          constants.additems(keys[i]);
-        }
+        constants.additems(keys[i]);
       }
     }
+    // print("ran");
+    // print(constants.items);
 
     setState(() {
       isLoading = false;
     });
   }
 
+  void refresh() {
+    constants.items = [];
+    constants.item_link = [];
+    constants.item_verified = [];
+  }
+
+  @override
+  void initState() {
+    getStudent();
+
+    super.initState();
+
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    getStudent();
     syncFromDatabase_home();
+
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -76,6 +89,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             springAnimationDurationInMilliseconds: 1000,
             onRefresh: () async {
               // to test out refresh
+              refresh();
               syncFromDatabase_home();
             },
             child: Container(

@@ -42,9 +42,18 @@ class MyApp extends StatelessWidget {
       home: StreamBuilder(
         stream: AuthMethods().auth.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Student_home_page();
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return Student_home_page();
+            }
           }
+          // if (snapshot.connectionState == ConnectionState.waiting) {
+          //   return const Center(
+          //     child: CircularProgressIndicator(
+          //       color: primaryColor,
+          //     ),
+          //   );
+          // }
           return const StudentSignup();
         },
       ),

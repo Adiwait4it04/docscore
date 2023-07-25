@@ -102,7 +102,7 @@ class StudentProfile extends StatelessWidget {
                                 "B.Tech CSE with gaming technology"),
                             StudentProfileModels.profileText(
                                 const Icon(Icons.numbers),
-                                "fk2061@srmist.edu.in"),
+                                "fk061@srmist.edu.in"),
                           ],
                         ),
                       ],
