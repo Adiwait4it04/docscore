@@ -204,7 +204,7 @@ additems(String item) async {
   if (!item_link.contains(docs![item][1])) {
     item_link.add(docs[item][1]);
   }
-  if (!item_verified.contains(docs[item][0])) {
+  if (item_verified.length < items.length) {
     item_verified.add(docs[item][0]);
   }
 }

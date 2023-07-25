@@ -40,12 +40,6 @@ class _Student_home_pageState extends State<Student_home_page> {
     });
   }
 
-  @override
-  void reassemble() {
-    super.reassemble();
-    setState(() {});
-  }
-
   void syncFromDatabase_home() async {
     setState(() {
       isLoading = true;
@@ -82,7 +76,6 @@ class _Student_home_pageState extends State<Student_home_page> {
             onRefresh: () async {
               // to test out refresh
               syncFromDatabase_home();
-              reassemble();
             },
             child: Container(
               height: MediaQuery.of(context).size.height,
