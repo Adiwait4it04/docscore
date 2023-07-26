@@ -4,6 +4,7 @@ import 'package:docscore/models/student.dart' as student_model;
 import 'package:docscore/models/faculty.dart' as faculty_model;
 import 'package:docscore/resources/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 
 class User {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -163,6 +164,30 @@ class User {
       "section": await getStudentSectionFromRegNo(await regno),
       "name": await getStudentNameFromRegNo(await regno),
       "mail": await getUserEmail(),
+    };
+
+    return data;
+  }
+
+  Future<Map<String, dynamic>> getStudentHomePageData() async {
+    var documents = await getStudentDocumentList(await regno);
+    List name = documents!.keys.toList();
+    List<String> link = [];
+    for (int i = 0; i < documents.length; i++) {
+      link.add(documents[name[i]][1]);
+    }
+    List<int> verification = [];
+    for (int i = 0; i < documents.length; i++) {
+      verification.add(documents[name[i]][0]);
+    }
+    Map<String, dynamic> data = {
+      "regno": await getStudentRegNoFromUid(auth.currentUser!.uid),
+      "section": await getStudentSectionFromRegNo(await regno),
+      "name": await getStudentNameFromRegNo(await regno),
+      "docName": name,
+      "link": link,
+      "verification": verification,
+      "count": name.length,
     };
 
     return data;

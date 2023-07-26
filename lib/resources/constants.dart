@@ -43,8 +43,8 @@ Future<void> launchInBrowser(Uri url) async {
   }
 }
 
-StudentHomeWidget(index) {
-  if (item_verified[index] == 0) {
+StudentHomeWidget(index, String docName, int verification, String link) {
+  if (verification == 0) {
     return Padding(
       padding:
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
@@ -73,7 +73,7 @@ StudentHomeWidget(index) {
                 ),
                 FittedBox(
                   child: Text(
-                    items[index],
+                    docName,
                     style: GoogleFonts.montserrat(
                       color: const Color(0xFF2A519D),
                       fontWeight: FontWeight.w800,
@@ -94,7 +94,7 @@ StudentHomeWidget(index) {
       ),
     );
   }
-  if (item_verified[index] == 1) {
+  if (verification == 1) {
     return Padding(
       padding:
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
@@ -125,7 +125,7 @@ StudentHomeWidget(index) {
                 ),
                 FittedBox(
                   child: Text(
-                    items[index],
+                    docName,
                     style: GoogleFonts.montserrat(
                       color: const Color(0xFF2A519D),
                       fontWeight: FontWeight.w800,
@@ -146,7 +146,7 @@ StudentHomeWidget(index) {
       ),
     );
   }
-  if (item_verified[index] == -1) {
+  if (verification == -1) {
     return Padding(
       padding:
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
@@ -175,7 +175,7 @@ StudentHomeWidget(index) {
                 ),
                 FittedBox(
                   child: Text(
-                    items[index],
+                    docName,
                     style: GoogleFonts.montserrat(
                       color: const Color(0xFF2A519D),
                       fontWeight: FontWeight.w800,
