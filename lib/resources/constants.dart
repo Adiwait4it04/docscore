@@ -101,7 +101,9 @@ StudentHomeWidget(index) {
       child: InkWell(
         onTap: () {
           String link = item_link[index];
-          launchInBrowser(Uri.parse(link));
+          launchInBrowser(
+            Uri.parse(link),
+          );
         },
         child: Container(
           height: 100,
