@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_element
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,6 +40,23 @@ Future<void> launchInBrowser(Uri url) async {
     mode: LaunchMode.externalApplication,
   )) {
     throw Exception('Could not launch $url');
+  }
+}
+
+//pop_menu code
+void _showpopupmenu(BuildContext context) async {
+  final result = await showMenu(
+    context: context,
+    position: const RelativeRect.fromLTRB(100, 100, 0, 0),
+    items: [
+      const PopupMenuItem(
+        child: Text("Delete"),
+      ),
+    ],
+    elevation: 8.0,
+  );
+  if (result == 'delete') {
+    // Add your delete document logic here
   }
 }
 
