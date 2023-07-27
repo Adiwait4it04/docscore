@@ -49,51 +49,54 @@ class _StudentProfileState extends State<StudentProfile> {
                     children: [
                       Column(
                         children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.20,
-                            width: MediaQuery.of(context).size.width,
-                            decoration:
-                                BoxDecoration(gradient: backgroundGradient()),
-                            child: Column(
-                              children: [
-                                SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.02),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        IconButton(
-                                          onPressed: () {
-                                            replaceScreen(
-                                              context,
-                                              Student_home_page(),
-                                            );
-                                          },
-                                          icon: const Icon(Icons.arrow_back,
-                                              color: Colors.white, size: 25),
-                                        ),
-                                        const Text(
-                                          "Profile",
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white),
-                                        )
-                                      ],
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.all(8),
-                                      height: 70,
-                                      width: 100,
-                                      child: Image.asset(
-                                        "assets/SRM_1.jpg",
+                          SafeArea(
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * 0.20,
+                              width: MediaQuery.of(context).size.width,
+                              decoration:
+                                  BoxDecoration(gradient: backgroundGradient()),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          IconButton(
+                                            onPressed: () {
+                                              replaceScreen(
+                                                context,
+                                                Student_home_page(),
+                                              );
+                                            },
+                                            icon: const Icon(Icons.arrow_back,
+                                                color: Colors.white, size: 25),
+                                          ),
+                                          const Text(
+                                            "Profile",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white),
+                                          )
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                      Container(
+                                        padding: const EdgeInsets.all(8),
+                                        height: 70,
+                                        width: 100,
+                                        child: Image.asset(
+                                          "assets/SRM_1.jpg",
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Container(
@@ -115,7 +118,7 @@ class _StudentProfileState extends State<StudentProfile> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  const SizedBox(height: 30),
+                                  const SizedBox(height: 20),
                                   Row(
                                     children: [
                                       const SizedBox(
@@ -127,7 +130,7 @@ class _StudentProfileState extends State<StudentProfile> {
                                       )
                                     ],
                                   ),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(height: 8),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -150,7 +153,7 @@ class _StudentProfileState extends State<StudentProfile> {
                                   ),
                                   Column(
                                     children: [
-                                      const SizedBox(height: 10),
+                                      const SizedBox(height: 8),
                                       Row(
                                         children: [
                                           const SizedBox(width: 25),
@@ -160,9 +163,8 @@ class _StudentProfileState extends State<StudentProfile> {
                                           )
                                         ],
                                       ),
-                                      const SizedBox(height: 10),
                                       Padding(
-                                        padding: const EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(10),
                                         child: InkWell(
                                           onTap: () {
                                             replaceScreen(
@@ -182,7 +184,7 @@ class _StudentProfileState extends State<StudentProfile> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.all(15),
+                                        padding: const EdgeInsets.all(10),
                                         child: Container(
                                           decoration: BoxDecoration(
                                               borderRadius:
