@@ -34,7 +34,7 @@ class _StudentProfileState extends State<StudentProfile> {
                 child: Container(
                   width: 50,
                   height: 50,
-                  child: CircularProgressIndicator(),
+                  child: const CircularProgressIndicator(),
                 ),
               );
             } else if (snapshot.hasError) {
@@ -216,8 +216,8 @@ class _StudentProfileState extends State<StudentProfile> {
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       decoration: BoxDecoration(
-                                          color:
-                                              Color.fromARGB(230, 215, 34, 31),
+                                          color: const Color.fromARGB(
+                                              230, 215, 34, 31),
                                           borderRadius:
                                               BorderRadius.circular(50)),
                                       child: const Center(
