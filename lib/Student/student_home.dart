@@ -56,7 +56,7 @@ class _Student_home_pageState extends State<Student_home_page> {
               AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show loading indicator while data is being fetched
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else {
