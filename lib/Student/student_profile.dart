@@ -105,9 +105,9 @@ class _StudentProfileState extends State<StudentProfile> {
                                 height:
                                     MediaQuery.of(context).size.height * 0.065,
                               ),
-                              const Text(
-                                "DARTHWIMP",
-                                style: TextStyle(
+                              Text(
+                                data["name"],
+                                style: const TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -159,14 +159,21 @@ class _StudentProfileState extends State<StudentProfile> {
                                   const SizedBox(height: 10),
                                   Padding(
                                     padding: const EdgeInsets.all(15),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          color: const Color(0xffA2A7B8)),
-                                      child: const ListTile(
-                                        title: Text("Documents Uploaded"),
-                                        trailing: Icon(Icons.arrow_forward_ios),
+                                    child: InkWell(
+                                      onTap: () {
+                                        replaceScreen(
+                                            context, Student_home_page());
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                            color: const Color(0xffA2A7B8)),
+                                        child: const ListTile(
+                                          title: Text("Documents Uploaded"),
+                                          trailing:
+                                              Icon(Icons.arrow_forward_ios),
+                                        ),
                                       ),
                                     ),
                                   ),
