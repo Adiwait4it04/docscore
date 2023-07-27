@@ -1,7 +1,9 @@
 import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
+import 'package:docscore/Student/student_login.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:docscore/models/users.dart' as user_model;
 
@@ -18,6 +20,8 @@ class _StudentProfileState extends State<StudentProfile> {
     super.initState();
     _studentData = user_model.User().getStudentData();
   }
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +190,7 @@ class _StudentProfileState extends State<StudentProfile> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(10),
-                                        child: GestureDetector(
+                                        child: InkWell(
                                           onTap: () {
                                             replaceScreen(
                                                 context, const adddocs());
@@ -228,9 +232,13 @@ class _StudentProfileState extends State<StudentProfile> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.symmetric(
-                                            vertical: 5.0),
+                                            vertical: 16.0),
                                         child: GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            _auth.signOut();
+                                            nextScreen(
+                                                context, StudentLoginPage());
+                                          },
                                           child: Container(
                                             height: MediaQuery.of(context)
                                                     .size
