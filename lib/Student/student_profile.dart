@@ -1,3 +1,4 @@
+import 'package:docscore/Student/add_docs.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:docscore/resources/constants/colors.dart';
@@ -185,16 +186,22 @@ class _StudentProfileState extends State<StudentProfile> {
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(10),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              color: const Color(0xffA2A7B8)),
-                                          child: const ListTile(
-                                            title: Text(
-                                                "Documents yet to be Uploaded"),
-                                            trailing:
-                                                Icon(Icons.arrow_forward_ios),
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            replaceScreen(
+                                                context, const adddocs());
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                color: const Color(0xffA2A7B8)),
+                                            child: const ListTile(
+                                              title: Text(
+                                                  "Documents yet to be Uploaded"),
+                                              trailing:
+                                                  Icon(Icons.arrow_forward_ios),
+                                            ),
                                           ),
                                         ),
                                       ),
