@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
 
 import 'dart:io';
 
@@ -61,12 +61,12 @@ class _adddocs0State extends State<adddocs0> {
         "${name[0]}",
         url);
     if (res == "Success") {
-      if (items.contains(name[0]))
+      if (items.contains(name[0])) {
         replaceScreen(
           context,
           Student_home_page(),
         );
-      else {
+      } else {
         additems(
           name[0],
         );
