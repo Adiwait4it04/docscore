@@ -136,9 +136,20 @@ StudentHomeWidget(index, String docName, int verification, String link) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Icon(
-                  Icons.document_scanner,
-                  color: Color(0xFF2A519D),
+                const Row(
+                  children: [
+                    Icon(
+                      Icons.document_scanner,
+                      color: Color(0xFF2A519D),
+                    ),
+                    IconButton(
+                      onPressed: null,
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.red,
+                      ),
+                    )
+                  ],
                 ),
                 FittedBox(
                   child: Text(
@@ -186,9 +197,27 @@ StudentHomeWidget(index, String docName, int verification, String link) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Icon(
-                  Icons.document_scanner,
-                  color: Color(0xFF2A519D),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 70.0),
+                      child: Icon(
+                        Icons.document_scanner,
+                        color: Color(0xFF2A519D),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 20.0),
+                      child: IconButton(
+                        onPressed: null,
+                        icon: Icon(
+                          Icons.delete,
+                          color: Colors.red,
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 FittedBox(
                   child: Text(
