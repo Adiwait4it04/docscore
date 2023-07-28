@@ -67,8 +67,9 @@ StudentHomeWidget(index, String docName, int verification, String link) {
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
       child: InkWell(
         onTap: () {
-          String link = item_link[index];
-          launchInBrowser(Uri.parse(link));
+          launchInBrowser(
+            Uri.parse(link),
+          );
         },
         child: Container(
           height: 100,
@@ -117,7 +118,6 @@ StudentHomeWidget(index, String docName, int verification, String link) {
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
       child: InkWell(
         onTap: () {
-          String link = item_link[index];
           launchInBrowser(
             Uri.parse(link),
           );
@@ -180,7 +180,6 @@ StudentHomeWidget(index, String docName, int verification, String link) {
           const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
       child: InkWell(
         onTap: () {
-          String link = item_link[index];
           launchInBrowser(Uri.parse(link));
         },
         child: Container(
