@@ -30,8 +30,20 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
       List<String?> res = await AuthMethods().loginStudent(
           email: emailController.text, password: passwordController.text);
       if (res[0] == "Success") {
-        replaceScreen(context, Student_home_page());
+        replaceScreen(
+          context,
+          const Student_home_page(),
+        );
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            "Incorrect Credentials",
+          ),
+        ),
+      );
     }
   }
 

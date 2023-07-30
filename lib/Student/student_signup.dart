@@ -1,4 +1,4 @@
-// ignore_for_file: sort_child_properties_last, unused_import, unused_field
+// ignore_for_file: sort_child_properties_last, unused_import, unused_field, use_build_context_synchronously
 import 'package:docscore/Faculty/utils/utils.dart';
 import 'package:docscore/Student/student_home.dart';
 import 'package:docscore/Student/student_login.dart';
@@ -66,10 +66,12 @@ class _StudentSignupState extends State<StudentSignup> {
   void getSections() async {
     _sections.clear();
     _sections.addAll(await section_model.Section().getSections());
-    setState(() {
-      _section = null;
-      _faculty = null;
-    });
+    setState(
+      () {
+        _section = null;
+        _faculty = null;
+      },
+    );
   }
 
   void getFaculty(String section) async {

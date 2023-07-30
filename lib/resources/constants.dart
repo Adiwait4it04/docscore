@@ -1,5 +1,6 @@
-// ignore_for_file: non_constant_identifier_names, unused_element
+// ignore_for_file: non_constant_identifier_names, unused_element, use_build_context_synchronously, unused_import
 
+import 'package:docscore/Student/student_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,15 @@ List<String> item_link = [];
 List<int> item_verified = [];
 int i = 0;
 int j = i++;
-final regno = user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
+var regno = user_model.User().getStudentRegNoFromUid(_auth.currentUser!.uid);
+String regno1 = regno.toString();
+Future refresh(BuildContext context, Widget screen) {
+  return Navigator.pushAndRemoveUntil(
+    context,
+    MaterialPageRoute(builder: (context) => screen),
+    (Route<dynamic> route) => false,
+  );
+}
 
 nextScreen(BuildContext context, Widget screen) {
   return Navigator.push(
@@ -60,7 +69,8 @@ void _showpopupmenu(BuildContext context) async {
   }
 }
 
-StudentHomeWidget(index, String docName, int verification, String link) {
+StudentHomeWidget(BuildContext context, index, String docName, int verification,
+    String link) {
   if (verification == 0) {
     return Padding(
       padding:
@@ -85,10 +95,10 @@ StudentHomeWidget(index, String docName, int verification, String link) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 70.0),
                       child: Icon(
                         Icons.document_scanner,
@@ -96,10 +106,19 @@ StudentHomeWidget(index, String docName, int verification, String link) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20.0),
+                      padding: const EdgeInsets.only(left: 21.0),
                       child: IconButton(
-                        onPressed: null,
-                        icon: Icon(
+                        onPressed: () async {
+                          user_model.User().deleteDoc(
+                              await user_model.User().getStudentRegNoFromUid(
+                                  _auth.currentUser!.uid),
+                              docName);
+                          refresh(
+                            context,
+                            Student_home_page(),
+                          );
+                        },
+                        icon: const Icon(
                           Icons.delete,
                           color: Colors.red,
                         ),
@@ -154,10 +173,10 @@ StudentHomeWidget(index, String docName, int verification, String link) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 70.0),
                       child: Icon(
                         Icons.document_scanner,
@@ -165,10 +184,16 @@ StudentHomeWidget(index, String docName, int verification, String link) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20.0),
+                      padding: const EdgeInsets.only(left: 21.0),
                       child: IconButton(
-                        onPressed: null,
-                        icon: Icon(
+                        onPressed: () async {
+                          user_model.User().deleteDoc(
+                              await user_model.User().getStudentRegNoFromUid(
+                                  _auth.currentUser!.uid),
+                              docName);
+                          refresh(context, Student_home_page());
+                        },
+                        icon: const Icon(
                           Icons.delete,
                           color: Colors.red,
                         ),
@@ -221,10 +246,10 @@ StudentHomeWidget(index, String docName, int verification, String link) {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.only(left: 70.0),
                       child: Icon(
                         Icons.document_scanner,
@@ -232,10 +257,19 @@ StudentHomeWidget(index, String docName, int verification, String link) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 20.0),
+                      padding: const EdgeInsets.only(left: 21.0),
                       child: IconButton(
-                        onPressed: null,
-                        icon: Icon(
+                        onPressed: () async {
+                          user_model.User().deleteDoc(
+                              await user_model.User().getStudentRegNoFromUid(
+                                  _auth.currentUser!.uid),
+                              docName);
+                          refresh(
+                            context,
+                            Student_home_page(),
+                          );
+                        },
+                        icon: const Icon(
                           Icons.delete,
                           color: Colors.red,
                         ),

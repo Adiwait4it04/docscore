@@ -126,6 +126,8 @@ class User {
   }
 
   Future<String> deleteDoc(String regno, String doc) async {
+    print(regno);
+    print(doc);
     String res = "Error";
     try {
       DocumentSnapshot<Map<String, dynamic>> querySnapshot =
@@ -141,6 +143,7 @@ class User {
     } catch (e) {
       res = e.toString();
     }
+    print(res);
     return res;
   }
 
