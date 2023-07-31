@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.hasData) {
-              return Student_home_page();
+              return const Student_home_page();
             }
           }
           // if (snapshot.connectionState == ConnectionState.waiting) {

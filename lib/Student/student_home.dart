@@ -56,8 +56,17 @@ class _Student_home_pageState extends State<Student_home_page> {
               AsyncSnapshot<Map<String, dynamic>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show loading indicator while data is being fetched
-              return const Center(
-                child: CircularProgressIndicator(),
+              return Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  gradient: backgroundGradient(),
+                ),
+                child: const Center(
+                  child: CircularProgressIndicator(
+                    color: Color(0xFFE9EFFF),
+                  ),
+                ),
               );
             } else {
               if (snapshot.hasError) {
@@ -72,13 +81,14 @@ class _Student_home_pageState extends State<Student_home_page> {
                   child: LiquidPullToRefresh(
                     color: const Color(0xFF0D47A1),
                     backgroundColor: Colors.white,
-                    springAnimationDurationInMilliseconds: 1000,
+                    showChildOpacityTransition: false,
                     onRefresh: () async {
                       // to test out refresh
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Student_home_page()),
+                          builder: (context) => const Student_home_page(),
+                        ),
                         (Route<dynamic> route) => false,
                       );
                     },
@@ -241,7 +251,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             ),
             trailing: GestureDetector(
               onTap: () async {
-                user_model.User().deleteDoc(
+                await user_model.User().deleteDoc(
                     await user_model.User()
                         .getStudentRegNoFromUid(_auth.currentUser!.uid),
                     docName);
@@ -303,7 +313,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             ),
             trailing: GestureDetector(
               onTap: () async {
-                user_model.User().deleteDoc(
+                await user_model.User().deleteDoc(
                     await user_model.User()
                         .getStudentRegNoFromUid(_auth.currentUser!.uid),
                     docName);
@@ -364,7 +374,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             ),
             trailing: GestureDetector(
               onTap: () async {
-                user_model.User().deleteDoc(
+                await user_model.User().deleteDoc(
                     await user_model.User()
                         .getStudentRegNoFromUid(_auth.currentUser!.uid),
                     docName);

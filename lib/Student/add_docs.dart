@@ -96,7 +96,7 @@ class _adddocsState extends State<adddocs> {
         body: LiquidPullToRefresh(
           color: const Color(0xFF0D47A1),
           backgroundColor: Colors.white,
-          springAnimationDurationInMilliseconds: 1000,
+          showChildOpacityTransition: false,
           onRefresh: () async {
             syncFromDatabase();
           },
@@ -122,7 +122,10 @@ class _adddocsState extends State<adddocs> {
                       children: [
                         IconButton(
                           onPressed: () {
-                            replaceScreen(context, Student_home_page());
+                            replaceScreen(
+                              context,
+                              const Student_home_page(),
+                            );
                           },
                           icon: Icon(
                             Icons.arrow_back,
