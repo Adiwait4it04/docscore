@@ -77,6 +77,8 @@ class _adddocsState extends State<adddocs> {
       for (int i = 0; i < name.length; i++) {
         if (docs[name[i]] != null) {
           buttonStates[i] = false;
+        } else {
+          buttonStates[i] = true;
         }
       }
     }

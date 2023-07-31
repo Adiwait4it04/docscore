@@ -153,11 +153,12 @@ class _Student_home_pageState extends State<Student_home_page> {
                                 itemBuilder: (context, int index) {
                                   return SingleChildScrollView(
                                     child: StudentHomeWidget(
-                                        context,
-                                        index,
-                                        data["docName"][index],
-                                        data["verification"][index],
-                                        data["link"][index]),
+                                      context,
+                                      index,
+                                      data["docName"][index],
+                                      data["verification"][index],
+                                      data["link"][index],
+                                    ),
                                   );
                                 },
                               ),
@@ -247,7 +248,10 @@ class _Student_home_pageState extends State<Student_home_page> {
                 _studentHomePageData =
                     user_model.User().getStudentHomePageData();
 
-                constants.refresh(context, const Student_home_page());
+                constants.refresh(
+                  context,
+                  const Student_home_page(),
+                );
               },
               child: const Icon(
                 Icons.delete,
@@ -279,7 +283,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             },
             leading: const Icon(
               Icons.document_scanner,
-              color: Colors.white,
+              color: Color(0xFF0D47A1),
             ),
             title: Text(
               docName,
@@ -340,7 +344,7 @@ class _Student_home_pageState extends State<Student_home_page> {
             },
             leading: const Icon(
               Icons.document_scanner,
-              color: Colors.white,
+              color: Color(0xFF0D47A1),
             ),
             title: Text(
               docName,
