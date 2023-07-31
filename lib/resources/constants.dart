@@ -115,7 +115,7 @@ StudentHomeWidget(BuildContext context, index, String docName, int verification,
                               docName);
                           refresh(
                             context,
-                            Student_home_page(),
+                            const Student_home_page(),
                           );
                         },
                         icon: const Icon(
@@ -191,7 +191,10 @@ StudentHomeWidget(BuildContext context, index, String docName, int verification,
                               await user_model.User().getStudentRegNoFromUid(
                                   _auth.currentUser!.uid),
                               docName);
-                          refresh(context, Student_home_page());
+                          refresh(
+                            context,
+                            const Student_home_page(),
+                          );
                         },
                         icon: const Icon(
                           Icons.delete,
@@ -266,7 +269,7 @@ StudentHomeWidget(BuildContext context, index, String docName, int verification,
                               docName);
                           refresh(
                             context,
-                            Student_home_page(),
+                            const Student_home_page(),
                           );
                         },
                         icon: const Icon(

@@ -78,7 +78,7 @@ class _Student_home_pageState extends State<Student_home_page> {
                       Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Student_home_page()),
+                            builder: (context) => const Student_home_page()),
                         (Route<dynamic> route) => false,
                       );
                     },
@@ -144,6 +144,9 @@ class _Student_home_pageState extends State<Student_home_page> {
                                 ),
                               ),
                             ),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             Expanded(
                               child: ListView.builder(
                                 itemCount: data["count"],
@@ -199,154 +202,118 @@ class _Student_home_pageState extends State<Student_home_page> {
       int verification, String link) {
     if (verification == 0) {
       return Padding(
-        padding:
-            const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
-        child: InkWell(
-          onTap: () {
-            constants.launchInBrowser(
-              Uri.parse(link),
-            );
-          },
-          child: Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE9EFFF),
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                color: const Color(0xFF7B1FA2),
-                width: 2,
+        padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFFE9EFFF),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: const Color(0xFF7B1FA2),
+              width: 2,
+            ),
+          ),
+          child: ListTile(
+            onTap: () {
+              constants.launchInBrowser(
+                Uri.parse(link),
+              );
+            },
+            leading: const Icon(
+              Icons.document_scanner,
+              color: Color(0xFF0D47A1),
+            ),
+            title: Text(
+              docName,
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+                color: const Color(0xFF0D47A1),
               ),
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 70.0),
-                        child: Icon(
-                          Icons.document_scanner,
-                          color: Color(0xFF2A519D),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 21.0),
-                        child: IconButton(
-                          onPressed: () async {
-                            user_model.User().deleteDoc(
-                                await user_model.User().getStudentRegNoFromUid(
-                                    _auth.currentUser!.uid),
-                                docName);
-                            _studentHomePageData = _studentHomePageData =
-                                user_model.User().getStudentHomePageData();
-                            ;
-                            constants.refresh(context, Student_home_page());
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  FittedBox(
-                    child: Text(
-                      docName,
-                      style: GoogleFonts.montserrat(
-                        color: const Color(0xFF2A519D),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    "Not Yet Checked",
-                    style: TextStyle(
-                      color: Color(0xFF2A519D),
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
+            subtitle: Text(
+              "Not Verified",
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 15 * MediaQuery.of(context).textScaleFactor,
+                color: const Color(0xFF0D47A1),
+              ),
+            ),
+            trailing: GestureDetector(
+              onTap: () async {
+                user_model.User().deleteDoc(
+                    await user_model.User()
+                        .getStudentRegNoFromUid(_auth.currentUser!.uid),
+                    docName);
+                _studentHomePageData =
+                    user_model.User().getStudentHomePageData();
+
+                constants.refresh(context, const Student_home_page());
+              },
+              child: const Icon(
+                Icons.delete,
+                color: Colors.red,
               ),
             ),
           ),
         ),
       );
     }
+
     if (verification == 1) {
       return Padding(
-        padding:
-            const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
-        child: InkWell(
-          onTap: () {
-            constants.launchInBrowser(
-              Uri.parse(link),
-            );
-          },
-          child: Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE9EFFF),
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                color: const Color(0xFF43A047),
-                width: 2,
+        padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFFE9EFFF),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: const Color(0xFF43A047),
+              width: 2,
+            ),
+          ),
+          child: ListTile(
+            onTap: () {
+              constants.launchInBrowser(
+                Uri.parse(link),
+              );
+            },
+            leading: const Icon(
+              Icons.document_scanner,
+              color: Colors.white,
+            ),
+            title: Text(
+              docName,
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+                color: Colors.white,
               ),
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 70.0),
-                        child: Icon(
-                          Icons.document_scanner,
-                          color: Color(0xFF2A519D),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 21.0),
-                        child: IconButton(
-                          onPressed: () async {
-                            user_model.User().deleteDoc(
-                                await user_model.User().getStudentRegNoFromUid(
-                                    _auth.currentUser!.uid),
-                                docName);
-                            _studentHomePageData =
-                                user_model.User().getStudentHomePageData();
+            subtitle: Text(
+              "Approved",
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 15 * MediaQuery.of(context).textScaleFactor,
+                color: Colors.white,
+              ),
+            ),
+            trailing: GestureDetector(
+              onTap: () async {
+                user_model.User().deleteDoc(
+                    await user_model.User()
+                        .getStudentRegNoFromUid(_auth.currentUser!.uid),
+                    docName);
+                _studentHomePageData =
+                    user_model.User().getStudentHomePageData();
 
-                            constants.refresh(context, Student_home_page());
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  FittedBox(
-                    child: Text(
-                      docName,
-                      style: GoogleFonts.montserrat(
-                        color: const Color(0xFF2A519D),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    "Verified",
-                    style: TextStyle(
-                      color: Color(0xFF2A519D),
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
+                constants.refresh(
+                  context,
+                  const Student_home_page(),
+                );
+              },
+              child: const Icon(
+                Icons.delete,
+                color: Colors.red,
               ),
             ),
           ),
@@ -355,74 +322,56 @@ class _Student_home_pageState extends State<Student_home_page> {
     }
     if (verification == -1) {
       return Padding(
-        padding:
-            const EdgeInsets.only(top: 30.0, left: 110, right: 110, bottom: 30),
-        child: InkWell(
-          onTap: () {
-            constants.launchInBrowser(Uri.parse(link));
-          },
-          child: Container(
-            height: 100,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE9EFFF),
-              borderRadius: BorderRadius.circular(10.0),
-              border: Border.all(
-                color: const Color(0xFFC62828),
-                width: 2,
+        padding: const EdgeInsets.only(top: 30.0, bottom: 30),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFF0D47A1),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: Colors.red,
+              width: 2,
+            ),
+          ),
+          child: ListTile(
+            onTap: () {
+              constants.launchInBrowser(
+                Uri.parse(link),
+              );
+            },
+            leading: const Icon(
+              Icons.document_scanner,
+              color: Colors.white,
+            ),
+            title: Text(
+              docName,
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 20 * MediaQuery.of(context).textScaleFactor,
+                color: Colors.white,
               ),
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 70.0),
-                        child: Icon(
-                          Icons.document_scanner,
-                          color: Color(0xFF2A519D),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 21.0),
-                        child: IconButton(
-                          onPressed: () async {
-                            user_model.User().deleteDoc(
-                                await user_model.User().getStudentRegNoFromUid(
-                                    _auth.currentUser!.uid),
-                                docName);
-                            _studentHomePageData = _studentHomePageData =
-                                user_model.User().getStudentHomePageData();
-                            ;
-                            constants.refresh(context, Student_home_page());
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  FittedBox(
-                    child: Text(
-                      docName,
-                      style: GoogleFonts.montserrat(
-                        color: const Color(0xFF2A519D),
-                        fontWeight: FontWeight.w800,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    "Rejected",
-                    style: TextStyle(
-                      color: Color(0xFF2A519D),
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ],
+            subtitle: Text(
+              "Rejected",
+              style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w500,
+                fontSize: 15 * MediaQuery.of(context).textScaleFactor,
+                color: Colors.white,
+              ),
+            ),
+            trailing: GestureDetector(
+              onTap: () async {
+                user_model.User().deleteDoc(
+                    await user_model.User()
+                        .getStudentRegNoFromUid(_auth.currentUser!.uid),
+                    docName);
+                _studentHomePageData =
+                    user_model.User().getStudentHomePageData();
+
+                constants.refresh(context, const Student_home_page());
+              },
+              child: const Icon(
+                Icons.delete,
+                color: Colors.red,
               ),
             ),
           ),
