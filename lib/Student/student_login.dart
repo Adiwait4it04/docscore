@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:docscore/Faculty/utils/utils.dart';
 import 'package:docscore/Student/student_signup.dart';
 import 'package:docscore/resources/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -34,22 +35,18 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
           context,
           const Student_home_page(),
         );
+      } else {
+        showSnackBar("Please Enter Correct Credentials", context);
       }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          backgroundColor: Colors.red,
-          content: Text(
-            "Incorrect Credentials",
-          ),
-        ),
-      );
     }
   }
 
   @override
   void navigateToSignup() {
-    replaceScreen(context, const StudentSignup());
+    replaceScreen(
+      context,
+      const StudentSignup(),
+    );
   }
 
   @override

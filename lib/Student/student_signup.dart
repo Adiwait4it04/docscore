@@ -129,7 +129,7 @@ class _StudentSignupState extends State<StudentSignup> {
           showSnackBar("Signup completed", context);
           replaceScreen(
             context,
-            StudentLoginPage(),
+            const Student_home_page(),
           );
         } else {
           showSnackBar("Signup failed", context);
@@ -317,7 +317,7 @@ class _StudentSignupState extends State<StudentSignup> {
                           enabledBorder: dropDownBorder,
                           focusedBorder: dropDownBorder,
                           errorBorder: dropDownBorder,
-                          contentPadding: EdgeInsets.all(8.0),
+                          contentPadding: const EdgeInsets.all(8.0),
                           filled: true,
                           fillColor: Colors.white,
                         ),
@@ -363,7 +363,7 @@ class _StudentSignupState extends State<StudentSignup> {
                           enabledBorder: dropDownBorder,
                           focusedBorder: dropDownBorder,
                           errorBorder: dropDownBorder,
-                          contentPadding: EdgeInsets.all(8.0),
+                          contentPadding: const EdgeInsets.all(8.0),
                           filled: true,
                           fillColor: Colors.white,
                         ),
