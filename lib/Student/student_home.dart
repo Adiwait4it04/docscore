@@ -308,7 +308,7 @@ class _Student_home_pageState extends State<Student_home_page> {
               style: GoogleFonts.montserrat(
                 fontWeight: FontWeight.w500,
                 fontSize: 15 * MediaQuery.of(context).textScaleFactor,
-                color: Colors.white,
+                color: const Color(0xFF0D47A1),
               ),
             ),
             trailing: GestureDetector(

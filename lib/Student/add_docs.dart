@@ -208,17 +208,17 @@ class _adddocsState extends State<adddocs> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
                                         Text(
                                           "10th Marksheet",
                                           style: GoogleFonts.montserrat(
                                             fontWeight: FontWeight.w700,
                                             color: Colors.black,
                                           ),
-                                        ),
-                                        const Icon(
-                                          Icons.document_scanner_sharp,
-                                          size: 30,
-                                          color: Colors.black,
                                         ),
                                       ],
                                     ),
@@ -253,17 +253,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         "12th Marksheet",
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -301,17 +301,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         "CGPA details",
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -349,17 +349,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[3],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -397,17 +397,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[4],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -445,17 +445,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[5],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -495,6 +495,11 @@ class _adddocsState extends State<adddocs> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
                                         Container(
                                           child: Text(
                                             name[6],
@@ -505,11 +510,6 @@ class _adddocsState extends State<adddocs> {
                                               color: Colors.black,
                                             ),
                                           ),
-                                        ),
-                                        const Icon(
-                                          Icons.document_scanner_sharp,
-                                          size: 30,
-                                          color: Colors.black,
                                         ),
                                       ],
                                     ),
@@ -546,17 +546,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[7],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -598,17 +598,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[8],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -652,6 +652,11 @@ class _adddocsState extends State<adddocs> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
+                                        const Icon(
+                                          Icons.document_scanner_sharp,
+                                          size: 30,
+                                          color: Colors.black,
+                                        ),
                                         Container(
                                           child: Text(
                                             name[9],
@@ -662,11 +667,6 @@ class _adddocsState extends State<adddocs> {
                                               color: Colors.black,
                                             ),
                                           ),
-                                        ),
-                                        const Icon(
-                                          Icons.document_scanner_sharp,
-                                          size: 30,
-                                          color: Colors.black,
                                         ),
                                       ],
                                     ),
@@ -709,17 +709,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[10],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
@@ -761,17 +761,17 @@ class _adddocsState extends State<adddocs> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
+                                      const Icon(
+                                        Icons.document_scanner_sharp,
+                                        size: 30,
+                                        color: Colors.black,
+                                      ),
                                       Text(
                                         name[11],
                                         style: GoogleFonts.montserrat(
                                           fontWeight: FontWeight.w700,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                      const Icon(
-                                        Icons.document_scanner_sharp,
-                                        size: 30,
-                                        color: Colors.black,
                                       ),
                                     ],
                                   ),
